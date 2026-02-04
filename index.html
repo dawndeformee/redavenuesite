@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RED AVENUE SCHOOL — English for Kids</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&family=Allura&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --brand: #ba382e;
+      --soft-black: #1f1f1f;
+      --bg: #f8f3ed;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--soft-black);
+      line-height: 1.7;
+    }
+
+    header {
+      padding: 80px 20px 100px;
+      text-align: center;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: var(--brand);
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      font-family: 'Allura', cursive;
+      font-size: 30px;
+      margin-top: 6px;
+    }
+
+    nav {
+      margin-top: 30px;
+    }
+
+    nav a {
+      margin: 0 14px;
+      text-decoration: none;
+      color: var(--soft-black);
+      font-size: 14px;
+    }
+
+    .hero-text {
+      max-width: 720px;
+      margin: 50px auto 0;
+      font-size: 20px;
+      font-weight: 300;
+    }
+
+    .cta {
+      margin-top: 40px;
+    }
+
+    .cta a {
+      display: inline-block;
+      padding: 16px 34px;
+      background: var(--brand);
+      color: white;
+      text-decoration: none;
+      border-radius: 40px;
+      font-size: 15px;
+    }
+
+    section {
+      padding: 120px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .section-sub {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 70px;
+      font-size: 18px;
+      font-weight: 300;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
+    }
+
+    .photo {
+      background: #ddd;
+      height: 280px;
+      border-radius: 28px;
+    }
+
+    .price-card {
+      background: white;
+      padding: 40px 30px;
+      border-radius: 36px;
+      text-align: center;
+    }
+
+    .price-card h3 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 20px;
+    }
+
+    footer {
+      padding: 80px 20px;
+      text-align: center;
+      background: #111;
+      color: #eee;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">RED AVENUE</div>
+  <div class="subtitle">english school</div>
+
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="prices.html">Абонементы</a>
+    <a href="teachers.html">Преподаватели</a>
+    <a href="contacts.html">Контакты</a>
+  </nav>
+
+  <div class="hero-text">
+    Школа английского языка для детей.
+    Маленькие группы, живое общение и результат,
+    который видят родители и любят дети.
+  </div>
+
+  <div class="cta">
+    <a href="#" onclick="openForm()">Записаться на пробное занятие</a>
+  </div>
+</header>
+
+<section>
+  <h2>Как проходят занятия</h2>
+  <p class="section-sub">
+    Мы учим через интерес, игру и диалог.
+    Английский становится частью жизни, а не школьной обязаловкой.
+  </p>
+
+  <div class="grid">
+    <div class="photo"></div>
+    <div class="photo"></div>
+    <div class="photo"></div>
+  </div>
+</section>
+
+<section>
+  <h2>Абонементы</h2>
+  <p class="section-sub">Формат обучения под любые задачи и возраст</p>
+
+  <div class="grid">
+    <div class="price-card">
+      <div class="photo"></div>
+      <h3>Групповые занятия</h3>
+      <p>2–6 детей в группе<br>Живое общение и командная работа</p>
+    </div>
+
+    <div class="price-card">
+      <div class="photo"></div>
+      <h3>Индивидуальные</h3>
+      <p>Персональный подход<br>Максимальный результат</p>
+    </div>
+
+    <div class="price-card">
+      <div class="photo"></div>
+      <h3>Онлайн</h3>
+      <p>Из любой точки мира<br>Удобно и эффективно</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>RED AVENUE SCHOOL</p>
+  <p>English for kids</p>
+</footer>
+
+<script>
+  function openForm() {
+    alert('Форма будет подключена следующим шагом');
+  }
+</script>
+
+</body>
+</html>
+

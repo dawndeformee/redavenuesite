@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Контакты — RED AVENUE SCHOOL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:ital,wght@0,400;1,400&family=Allura&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #ba382e;
+      --soft-black: #222222;
+      --bg: #f8f3ed;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--soft-black);
+    }
+    header {
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--brand);
+      letter-spacing: 2px;
+    }
+    .subtitle {
+      font-family: 'Allura', cursive;
+      font-size: 24px;
+    }
+    nav {
+      margin-top: 20px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--soft-black);
+    }
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 24px;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      margin-top: 0;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      border: 1px solid #ccc;
+      font-family: 'Inter', sans-serif;
+    }
+    button {
+      width: 100%;
+      padding: 14px;
+      background: var(--brand);
+      border: none;
+      border-radius: 30px;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .map {
+      background: #ddd;
+      height: 300px;
+      border-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">RED AVENUE</div>
+  <div class="subtitle">english school</div>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="prices.html">Абонементы</a>
+    <a href="teachers.html">Преподаватели</a>
+    <a href="contacts.html">Контакты</a>
+  </nav>
+</header>
+
+<section>
+  <h2>Контакты</h2>
+  <div class="grid">
+
+    <div class="card">
+      <h3>Связаться с нами</h3>
+      <p>Оставьте заявку на пробное занятие — мы свяжемся с вами</p>
+      <form>
+        <input type="text" placeholder="Имя" />
+        <input type="text" placeholder="Телефон" />
+        <input type="text" placeholder="Telegram / WhatsApp" />
+        <textarea rows="3" placeholder="Комментарий"></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h3>Где мы находимся</h3>
+      <p>
+        📍 Адрес: (указать адрес)<br><br>
+        📞 Телефон: (номер)<br>
+        ✉️ Email: (email)
+      </p>
+      <div class="map"></div>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Абонементы — RED AVENUE SCHOOL</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:ital,wght@0,400;1,400&family=Allura&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brand: #ba382e;
+      --soft-black: #222222;
+      --bg: #f8f3ed;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--soft-black);
+    }
+    header {
+      padding: 30px 20px;
+      text-align: center;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--brand);
+      letter-spacing: 2px;
+    }
+    .subtitle {
+      font-family: 'Allura', cursive;
+      font-size: 24px;
+    }
+    nav {
+      margin-top: 20px;
+    }
+    nav a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: var(--soft-black);
+    }
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 60px 20px;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      text-align: center;
+    }
+    .photo {
+      height: 180px;
+      background: #ddd;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">RED AVENUE</div>
+  <div class="subtitle">english school</div>
+  <nav>
+    <a href="index.html">Главная</a>
+    <a href="prices.html">Абонементы</a>
+    <a href="teachers.html">Преподаватели</a>
+    <a href="contacts.html">Контакты</a>
+  </nav>
+</header>
+
+<section>
+  <h2>Абонементы</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="photo"></div>
+      <strong>Групповые занятия</strong><br><br>
+      2–6 детей в группе<br>
+      развитие речи и уверенности<br><br>
+      от (цена)
+    </div>
+    <div class="card">
+      <div class="photo"></div>
+      <strong>Индивидуальные занятия</strong><br><br>
+      1 на 1 с преподавателем<br>
+      персональный темп<br><br>
+      от (цена)
+    </div>
+    <div class="card">
+      <div class="photo"></div>
+      <strong>Онлайн занятия</strong><br><br>
+      занятия из любой точки мира<br>
+      удобно для родителей<br><br>
+      от (цена)
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
