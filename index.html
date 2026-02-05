@@ -89,7 +89,7 @@
 
     .section-sub {
       text-align: center;
-      max-width: 640px;
+      max-width: 680px;
       margin: 0 auto 70px;
       font-size: 18px;
       font-weight: 300;
@@ -102,20 +102,49 @@
     }
 
     .photo {
-      background: #ddd;
       height: 280px;
+      border-radius: 28px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo.free {
+      height: auto;
+      margin-bottom: 0;
+    }
+
+    .photo.free img {
+      height: auto;
+      object-fit: initial;
       border-radius: 28px;
     }
 
-    .price-card {
+    .caption {
+      text-align: center;
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    .card {
       background: white;
-      padding: 40px 30px;
-      border-radius: 36px;
+      padding: 30px;
+      border-radius: 28px;
       text-align: center;
     }
 
-    .price-card h3 {
+    .card h3 {
       font-family: 'Playfair Display', serif;
+      margin-top: 15px;
+    }
+
+    ul {
+      padding-left: 20px;
       margin-top: 20px;
     }
 
@@ -127,6 +156,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <header>
@@ -135,58 +165,123 @@
 
   <nav>
     <a href="index.html">Главная</a>
-    <a href="prices.html">Абонементы</a>
     <a href="teachers.html">Преподаватели</a>
     <a href="contacts.html">Контакты</a>
   </nav>
 
   <div class="hero-text">
-    Школа английского языка для детей.
+    Школа английского языка для детей.<br>
     Маленькие группы, живое общение и результат,
     который видят родители и любят дети.
   </div>
 
   <div class="cta">
-    <a href="#" onclick="openForm()">Записаться на пробное занятие</a>
+    <a href="https://t.me/taisie_taya" target="_blank">
+      Записаться на пробное занятие
+    </a>
   </div>
 </header>
 
 <section>
-  <h2>Как проходят занятия</h2>
-  <p class="section-sub">
-    Мы учим через интерес, игру и диалог.
-    Английский становится частью жизни, а не школьной обязаловкой.
-  </p>
+  <h2>Как проходят наши занятия</h2>
 
   <div class="grid">
-    <div class="photo"></div>
-    <div class="photo"></div>
-    <div class="photo"></div>
+    <div class="card">
+      <div class="photo">
+        <img src="images/group.jpg">
+      </div>
+      <h3>Групповые занятия</h3>
+      <p>Социализация, командная работа и уверенность в речи</p>
+    </div>
+
+    <div class="card">
+      <div class="photo">
+        <img src="images/individual.jpg">
+      </div>
+      <h3>Индивидуальные занятия</h3>
+      <p>Персональная программа и гибкий график</p>
+    </div>
   </div>
 </section>
 
 <section>
-  <h2>Абонементы</h2>
-  <p class="section-sub">Формат обучения под любые задачи и возраст</p>
+  <h2>По каким пособиям мы работаем</h2>
+
+  <p class="section-sub">
+    На уроках ребята занимаются по авторской программе,
+    написанной под каждого ученика или группу
+  </p>
 
   <div class="grid">
-    <div class="price-card">
-      <div class="photo"></div>
-      <h3>Групповые занятия</h3>
-      <p>2–6 детей в группе<br>Живое общение и командная работа</p>
+    <div class="card">
+      <div class="photo">
+        <img src="images/cambridge.png">
+      </div>
+      <h3>Cambridge University Press</h3>
+      <p>Топовые учебники от ведущего мирового издательства</p>
     </div>
 
-    <div class="price-card">
-      <div class="photo"></div>
-      <h3>Индивидуальные</h3>
-      <p>Персональный подход<br>Максимальный результат</p>
+    <div class="card">
+      <div class="photo">
+        <img src="images/oxford.png">
+      </div>
+      <h3>Oxford University Press</h3>
+      <p>Проверенные методики и современные подходы</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Внеклассные мероприятия</h2>
+
+  <div class="grid">
+    <div>
+      <div class="photo"><img src="images/halloween.jpg"></div>
+      <div class="caption">Тематические праздники</div>
     </div>
 
-    <div class="price-card">
-      <div class="photo"></div>
-      <h3>Онлайн</h3>
-      <p>Из любой точки мира<br>Удобно и эффективно</p>
+    <div>
+      <div class="photo"><img src="images/hug.JPG"></div>
+      <div class="caption">Разговорный клуб и уроки с носителями языка</div>
     </div>
+
+    <div>
+      <div class="photo"><img src="images/ceramics.JPG"></div>
+      <div class="caption">Творческие мастер-классы и наука для самых маленьких</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Летний лагерь</h2>
+
+  <div class="grid">
+    <div class="photo free">
+      <img src="images/camp.JPG">
+    </div>
+    <div class="photo free">
+      <img src="images/camp2.jpg">
+    </div>
+  </div>
+
+  <ul>
+    <li>🕗 Утренняя зарядка на ковриках</li>
+    <li>🥐 Завтраки от «Булочек ранней пташки»</li>
+    <li>🇬🇧 Английский с носителем языка</li>
+    <li>🎨 Творческие мастер-классы</li>
+    <li>⭐ Конкурс талантов</li>
+    <li>🌍 Уроки китайского, французского, испанского и других языков</li>
+  </ul>
+</section>
+
+<section>
+  <div style="max-width:720px;margin:auto;text-align:center;">
+    <div class="photo free">
+      <img src="images/max.jpg">
+    </div>
+    <p style="font-size:22px;margin-top:30px;">
+      Мы вас ждём 🤍
+    </p>
   </div>
 </section>
 
@@ -195,12 +290,9 @@
   <p>English for kids</p>
 </footer>
 
-<script>
-  function openForm() {
-    alert('Форма будет подключена следующим шагом');
-  }
-</script>
-
 </body>
 </html>
+
+
+
 

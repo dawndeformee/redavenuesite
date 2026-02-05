@@ -4,76 +4,117 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Преподаватели — RED AVENUE SCHOOL</title>
+
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:ital,wght@0,400;1,400&family=Allura&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --brand: #ba382e;
-      --soft-black: #222222;
-      --bg: #f8f3ed;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--soft-black);
-    }
-    header {
-      padding: 30px 20px;
-      text-align: center;
-    }
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 36px;
-      color: var(--brand);
-      letter-spacing: 2px;
-    }
-    .subtitle {
-      font-family: 'Allura', cursive;
-      font-size: 24px;
-    }
-    nav {
-      margin-top: 20px;
-    }
-    nav a {
-      margin: 0 10px;
-      text-decoration: none;
-      color: var(--soft-black);
-    }
-    section {
-      max-width: 1100px;
-      margin: auto;
-      padding: 60px 20px;
-    }
-    h2 {
-      font-family: 'Playfair Display', serif;
-      text-align: center;
-      margin-bottom: 40px;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
-    }
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 22px;
-      text-align: center;
-    }
-    .photo {
-      height: 220px;
-      background: #ddd;
-      border-radius: 16px;
-      margin-bottom: 20px;
-    }
-    .role {
-      font-style: italic;
-      color: #555;
-      margin-bottom: 10px;
-    }
-  </style>
+
+<style>
+  :root {
+    --brand: #ba382e;
+    --soft-black: #222222;
+    --bg: #f8f3ed;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--soft-black);
+  }
+
+  header {
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--brand);
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-family: 'Allura', cursive;
+    font-size: 24px;
+  }
+
+  nav {
+    margin-top: 20px;
+  }
+
+  nav a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: var(--soft-black);
+  }
+
+  section {
+    max-width: 1100px;
+    margin: auto;
+    padding: 60px 20px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+  }
+
+  .card {
+    background: white;
+    padding: 25px;
+    border-radius: 22px;
+    text-align: center;
+  }
+
+  .photo {
+    height: 220px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background: #ddd;
+  }
+
+  .photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .role {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+  }
+
+  .info-block {
+    margin-top: 12px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .info-label {
+    font-weight: 600;
+    color: #666;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .info-text {
+    color: #333;
+    display: block;
+  }
+</style>
 </head>
+
 <body>
 
 <header>
@@ -88,29 +129,96 @@
 </header>
 
 <section>
-  <h2>Наши преподаватели</h2>
+  <h2>Наша команда</h2>
+
   <div class="grid">
+
+    <div class="card">
+      <div class="photo"></div>
+      <strong>Таисия</strong>
+      <div class="role">Создательница студии Red Avenue</div>
+
+      <div class="info-block">
+        <span class="info-label">Занятия:</span>
+        <span class="info-text">Групповые, персональные, онлайн 1 на 1</span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Образование:</span>
+        <span class="info-text">
+          БФУ им. Канта, педагогическое образование (английский / испанский)
+        </span>
+      </div>
+    </div>
+
     <div class="card">
       <div class="photo"></div>
       <strong>Анна</strong>
-      <div class="role">Групповые занятия</div>
-      Опыт работы с детьми 6–10 лет.<br>
-      Помогает детям начать говорить уверенно и без страха.
+      <div class="role">Преподаватель</div>
+
+      <div class="info-block">
+        <span class="info-label">Занятия:</span>
+        <span class="info-text">Онлайн 1 на 1</span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Образование:</span>
+        <span class="info-text">
+          БФУ им. Канта, лингвистика (английский / французский)
+        </span>
+      </div>
     </div>
+
+    <!-- ВИКТОРИЯ -->
     <div class="card">
-      <div class="photo"></div>
-      <strong>Мария</strong>
-      <div class="role">Индивидуальные занятия</div>
-      Персональный подход и спокойный темп.<br>
-      Подходит для стеснительных детей.
+      <div class="photo">
+        <img src="images/victoria.jpg" alt="Виктория">
+      </div>
+
+      <strong>Виктория</strong>
+      <div class="role">Преподаватель</div>
+
+      <div class="info-block">
+        <span class="info-label">Занятия:</span>
+        <span class="info-text">Групповые, персональные, онлайн 1 на 1</span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Образование:</span>
+        <span class="info-text">
+          ПсковГУ, перевод и межкультурная коммуникация
+          (английский, французский)
+        </span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Магистратура:</span>
+        <span class="info-text">
+          БФУ им. Канта, «Экспериментальная лингвистика и ИИ»
+        </span>
+      </div>
     </div>
+
+    <!-- КИТАЙСКИЙ -->
     <div class="card">
-      <div class="photo"></div>
-      <strong>Екатерина</strong>
-      <div class="role">Онлайн формат</div>
-      Онлайн-занятия с вовлечением и игровой подачей.<br>
-      Комфортно даже для самых маленьких.
+      <div class="photo">
+        <img src="images/chinese.jpg" alt="Юйцзинь Чжу">
+      </div>
+
+      <strong>Юйцзинь Чжу</strong>
+      <div class="role">Преподаватель китайского языка</div>
+
+      <div class="info-block">
+        <span class="info-label">Занятия:</span>
+        <span class="info-text">Групповые, персональные, онлайн 1 на 1</span>
+      </div>
+
+      <div class="info-block">
+        <span class="info-label">Образование:</span>
+        <span class="info-text">Аспирант БФУ им. Канта</span>
+      </div>
     </div>
+
   </div>
 </section>
 

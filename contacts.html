@@ -63,29 +63,30 @@
     .card h3 {
       font-family: 'Playfair Display', serif;
       margin-top: 0;
+      margin-bottom: 20px;
     }
-    input, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 15px;
-      border-radius: 12px;
-      border: 1px solid #ccc;
-      font-family: 'Inter', sans-serif;
+    .contact-info {
+      line-height: 1.8;
     }
-    button {
-      width: 100%;
-      padding: 14px;
+    .contact-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 28px;
       background: var(--brand);
-      border: none;
-      border-radius: 30px;
       color: white;
+      text-decoration: none;
+      border-radius: 30px;
       font-size: 15px;
-      cursor: pointer;
     }
-    .map {
-      background: #ddd;
-      height: 300px;
+    .map-container {
+      margin-top: 20px;
       border-radius: 20px;
+      overflow: hidden;
+    }
+    .map-container iframe {
+      width: 100%;
+      height: 300px;
+      border: none;
     }
   </style>
 </head>
@@ -96,7 +97,6 @@
   <div class="subtitle">english school</div>
   <nav>
     <a href="index.html">Главная</a>
-    <a href="prices.html">Абонементы</a>
     <a href="teachers.html">Преподаватели</a>
     <a href="contacts.html">Контакты</a>
   </nav>
@@ -108,24 +108,23 @@
 
     <div class="card">
       <h3>Связаться с нами</h3>
-      <p>Оставьте заявку на пробное занятие — мы свяжемся с вами</p>
-      <form>
-        <input type="text" placeholder="Имя" />
-        <input type="text" placeholder="Телефон" />
-        <input type="text" placeholder="Telegram / WhatsApp" />
-        <textarea rows="3" placeholder="Комментарий"></textarea>
-        <button type="submit">Отправить</button>
-      </form>
+      <div class="contact-info">
+        <p><strong>📍 Адрес:</strong><br>Красная ул., 63А, Калининград</p>
+        <p><strong>📞 Телефон:</strong><br>Таисия +7 921 006 6760</p>
+        <p><strong>📸 Instagram:</strong><br><a href="https://www.instagram.com/red_avenue.school" target="_blank">@red_avenue.school</a></p>
+      </div>
+      <a href="https://t.me/taisie_taya" target="_blank" class="contact-btn">Записаться на пробное занятие</a>
     </div>
 
     <div class="card">
       <h3>Где мы находимся</h3>
-      <p>
-        📍 Адрес: (указать адрес)<br><br>
-        📞 Телефон: (номер)<br>
-        ✉️ Email: (email)
-      </p>
-      <div class="map"></div>
+      <div class="map-container">
+        <div style="position:relative;overflow:hidden;">
+          <a href="https://yandex.ru/maps/org/red_avenue/87008319622/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:0px;">Red Avenue</a>
+          <a href="https://yandex.ru/maps/22/kaliningrad/category/foreign_language_courses/184106160/?utm_medium=mapframe&utm_source=maps" style="color:#eee;font-size:12px;position:absolute;top:14px;">Курсы иностранных языков в Калининграде</a>
+          <iframe src="https://yandex.ru/map-widget/v1/?ll=20.472982%2C54.729756&mode=search&oid=87008319622&ol=biz&z=16" width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
+        </div>
+      </div>
     </div>
 
   </div>
