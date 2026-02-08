@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Преподаватели — RED AVENUE SCHOOL</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:ital,wght@0,400;1,400&family=Allura&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -36,7 +38,7 @@
   }
 
   .subtitle {
-    font-family: 'Allura', cursive;
+    font-family: 'Mrs Saint Delafield', cursive;
     font-size: 24px;
   }
 
@@ -112,6 +114,19 @@
     color: #333;
     display: block;
   }
+
+  footer {
+    padding: 80px 20px;
+    text-align: center;
+    background: #111;
+    color: #eee;
+    font-size: 14px;
+  }
+
+  footer a {
+    color: #eee;
+    text-decoration: none;
+  }
 </style>
 </head>
 
@@ -134,25 +149,26 @@
   <div class="grid">
 
     <div class="card">
-      <div class="photo"></div>
-      <strong>Таисия</strong>
-      <div class="role">Создательница студии Red Avenue</div>
-
-      <div class="info-block">
-        <span class="info-label">Занятия:</span>
-        <span class="info-text">Групповые, персональные, онлайн 1 на 1</span>
+      <div class="photo">
+        <img src="images/taya.jpg" alt="Таисия Ильгова" loading="lazy">
       </div>
 
+      <strong>Таисия Ильгова</strong>
+      <div class="role">Руководитель студии и преподаватель английского языка</div>
+
       <div class="info-block">
-        <span class="info-label">Образование:</span>
+        <span class="info-label">образование:</span>
         <span class="info-text">
-          БФУ им. Канта, педагогическое образование (английский / испанский)
+          БФУ им. Канта, Педагогическое образование (английский / испанский)
         </span>
       </div>
     </div>
 
     <div class="card">
-      <div class="photo"></div>
+      <div class="photo">
+        <img src="images/ann.jpg" alt="Анна" loading="lazy">
+      </div>
+
       <strong>Анна</strong>
       <div class="role">Преподаватель</div>
 
@@ -169,10 +185,9 @@
       </div>
     </div>
 
-    <!-- ВИКТОРИЯ -->
     <div class="card">
       <div class="photo">
-        <img src="images/victoria.jpg" alt="Виктория">
+        <img src="images/victoria.jpg" alt="Виктория" loading="lazy">
       </div>
 
       <strong>Виктория</strong>
@@ -199,10 +214,9 @@
       </div>
     </div>
 
-    <!-- КИТАЙСКИЙ -->
     <div class="card">
       <div class="photo">
-        <img src="images/chinese.jpg" alt="Юйцзинь Чжу">
+        <img src="images/chinese.jpg" alt="Юйцзинь Чжу" loading="lazy">
       </div>
 
       <strong>Юйцзинь Чжу</strong>
@@ -221,6 +235,18 @@
 
   </div>
 </section>
+
+<footer>
+  <p>RED AVENUE SCHOOL</p>
+  <p>
+    <a href="public_offer.html">Публичная оферта</a> ·
+    <a href="policy.html">Политика конфиденциальности</a>
+  </p>
+  <p style="margin-top:18px;font-size:13px;opacity:.7;">
+    Автор — Виктория Громова ·
+    <a href="https://instagram.com/dawn.deformee" target="_blank">@dawn.deformee</a>
+  </p>
+</footer>
 
 </body>
 </html>

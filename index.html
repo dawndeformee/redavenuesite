@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RED AVENUE SCHOOL — English for Kids</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&family=Allura&display=swap" rel="stylesheet">
-
-  <style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">  <style>
     :root {
       --brand: #ba382e;
       --soft-black: #1f1f1f;
@@ -37,8 +37,8 @@
     }
 
     .subtitle {
-      font-family: 'Allura', cursive;
-      font-size: 30px;
+      font-family: 'Mrs Saint Delafield', cursive;
+      font-size: 48px;
       margin-top: 6px;
     }
 
@@ -72,6 +72,33 @@
       text-decoration: none;
       border-radius: 40px;
       font-size: 15px;
+    }
+
+    .consent {
+      margin-top: 14px;
+      font-size: 12px;
+      color: #666;
+      list-style: none;
+      padding: 0;
+    }
+
+    .consent a {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0;
+      display: inline;
+      font-size: inherit;
+    }
+
+    .consent a:hover {
+      color: var(--brand);
+      text-decoration: underline;
+      text-decoration-thickness: 1.5px;
     }
 
     section {
@@ -153,6 +180,12 @@
       text-align: center;
       background: #111;
       color: #eee;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: #eee;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -166,11 +199,12 @@
   <nav>
     <a href="index.html">Главная</a>
     <a href="teachers.html">Преподаватели</a>
+    <a href="prices.html">Абонементы</a>
     <a href="contacts.html">Контакты</a>
   </nav>
 
   <div class="hero-text">
-    Школа английского языка для детей.<br>
+    Курсы английского языка для детей.<br>
     Маленькие группы, живое общение и результат,
     который видят родители и любят дети.
   </div>
@@ -179,6 +213,10 @@
     <a href="https://t.me/taisie_taya" target="_blank">
       Записаться на пробное занятие
     </a>
+    <div class="consent">
+      Нажимая кнопку «Записаться», вы соглашаетесь с
+      <a href="policy.html">Политикой конфиденциальности</a>
+    </div>
   </div>
 </header>
 
@@ -187,17 +225,13 @@
 
   <div class="grid">
     <div class="card">
-      <div class="photo">
-        <img src="images/group.jpg">
-      </div>
+      <div class="photo"><img src="images/group.jpg"></div>
       <h3>Групповые занятия</h3>
       <p>Социализация, командная работа и уверенность в речи</p>
     </div>
 
     <div class="card">
-      <div class="photo">
-        <img src="images/individual.jpg">
-      </div>
+      <div class="photo"><img src="images/individual.jpg"></div>
       <h3>Индивидуальные занятия</h3>
       <p>Персональная программа и гибкий график</p>
     </div>
@@ -214,17 +248,13 @@
 
   <div class="grid">
     <div class="card">
-      <div class="photo">
-        <img src="images/cambridge.png">
-      </div>
+      <div class="photo"><img src="images/cambridge.png"></div>
       <h3>Cambridge University Press</h3>
       <p>Топовые учебники от ведущего мирового издательства</p>
     </div>
 
     <div class="card">
-      <div class="photo">
-        <img src="images/oxford.png">
-      </div>
+      <div class="photo"><img src="images/oxford.png"></div>
       <h3>Oxford University Press</h3>
       <p>Проверенные методики и современные подходы</p>
     </div>
@@ -253,15 +283,11 @@
 </section>
 
 <section>
-  <h2>Летний лагерь</h2>
+  <h2>Летняя программа</h2>
 
   <div class="grid">
-    <div class="photo free">
-      <img src="images/camp.JPG">
-    </div>
-    <div class="photo free">
-      <img src="images/camp2.jpg">
-    </div>
+    <div class="photo free"><img src="images/camp.JPG"></div>
+    <div class="photo free"><img src="images/camp2.jpg"></div>
   </div>
 
   <ul>
@@ -287,7 +313,14 @@
 
 <footer>
   <p>RED AVENUE SCHOOL</p>
-  <p>English for kids</p>
+  <p>
+    <a href="public_offer.html">Публичная оферта</a> ·
+    <a href="policy.html">Политика конфиденциальности</a>
+  </p>
+  <p style="margin-top:18px;font-size:13px;opacity:.7;">
+    Автор - Виктория Громова ·
+    <a href="https://instagram.com/dawn.deformee" target="_blank">@dawn.deformee</a>
+  </p>
 </footer>
 
 </body>
