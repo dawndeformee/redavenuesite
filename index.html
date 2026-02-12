@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>RED AVENUE SCHOOL — English for Kids</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">  <style>
+  <link rel="preconnect" href="https://fonts.googleapis.com  ">
+  <link rel="preconnect" href="https://fonts.gstatic.com  " crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display  :wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <style>
     :root {
       --brand: #ba382e;
       --soft-black: #1f1f1f;
       --bg: #f8f3ed;
+      --section-gap: 80px;
     }
 
     * { box-sizing: border-box; }
@@ -25,7 +27,7 @@
     }
 
     header {
-      padding: 80px 20px 100px;
+      padding: 80px 20px;
       text-align: center;
     }
 
@@ -72,6 +74,13 @@
       text-decoration: none;
       border-radius: 40px;
       font-size: 15px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(186, 56, 46, 0.3);
     }
 
     .consent {
@@ -102,14 +111,23 @@
     }
 
     section {
-      padding: 120px 20px;
+      padding: var(--section-gap) 20px;
       max-width: 1200px;
       margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     h2 {
       font-family: 'Playfair Display', serif;
       font-size: 42px;
+      font-weight: 600;
       text-align: center;
       margin-bottom: 20px;
     }
@@ -133,6 +151,10 @@
       border-radius: 28px;
       overflow: hidden;
       margin-bottom: 14px;
+    }
+
+    .group-section .photo {
+      height: 360px;
     }
 
     .photo img {
@@ -160,14 +182,55 @@
 
     .card {
       background: white;
-      padding: 30px;
+      padding: 28px;
       border-radius: 28px;
       text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
     }
 
     .card h3 {
       font-family: 'Playfair Display', serif;
-      margin-top: 15px;
+      font-weight: 600;
+      margin-top: 12px;
+      font-size: 24px;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .step {
+      background: white;
+      padding: 32px 24px;
+      border-radius: 28px;
+      text-align: center;
+    }
+
+    .step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--brand);
+      color: white;
+      border-radius: 50%;
+      line-height: 40px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+
+    .step h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 22px;
+      margin-bottom: 12px;
     }
 
     ul {
@@ -176,7 +239,7 @@
     }
 
     footer {
-      padding: 80px 20px;
+      padding: var(--section-gap) 20px;
       text-align: center;
       background: #111;
       color: #eee;
@@ -186,6 +249,17 @@
     footer a {
       color: #eee;
       text-decoration: none;
+    }
+
+    .fade-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-item.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -210,7 +284,7 @@
   </div>
 
   <div class="cta">
-    <a href="https://t.me/taisie_taya" target="_blank">
+    <a href="https://t.me/taisie_taya  " target="_blank">
       Записаться на пробное занятие
     </a>
     <div class="consent">
@@ -220,26 +294,75 @@
   </div>
 </header>
 
-<section>
-  <h2>Как проходят наши занятия</h2>
-
+<section class="group-section">
+  <h2>Групповые занятия</h2>
   <div class="grid">
     <div class="card">
-      <div class="photo"><img src="images/group.jpg"></div>
-      <h3>Групповые занятия</h3>
+      <div class="photo"><img src="images/group.jpg" alt="Групповое занятие" loading="lazy" decoding="async"></div>
+      <h3>Групповые занятия английским</h3>
       <p>Социализация, командная работа и уверенность в речи</p>
-    </div>
-
-    <div class="card">
-      <div class="photo"><img src="images/individual.jpg"></div>
-      <h3>Индивидуальные занятия</h3>
-      <p>Персональная программа и гибкий график</p>
     </div>
   </div>
 </section>
 
 <section>
-  <h2>По каким пособиям мы работаем</h2>
+  <h2>Как проходит обучение</h2>
+  <div class="steps-grid">
+    <div class="step">
+      <div class="step-number">1</div>
+      <h3>Определяем уровень</h3>
+      <p>Бесплатное тестирование для понимания текущих знаний ребёнка</p>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <h3>Подбираем группу</h3>
+      <p>Формируем комфортную компанию по возрасту и уровню</p>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <h3>Регулярная практика речи</h3>
+      <p>Живое общение, игры и разговорные упражнения на каждом занятии</p>
+    </div>
+    <div class="step">
+      <div class="step-number">4</div>
+      <h3>Отслеживаем прогресс</h3>
+      <p>Родители видят результаты через регулярные отчёты и мини-презентации</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Наши направления</h2>
+  <div class="grid">
+    <div class="card">
+      <div class="photo"><img src="images/groupclass.jpg" alt="Групповые занятия английским" loading="lazy" decoding="async"></div>
+      <h3>Групповые занятия английским</h3>
+    </div>
+    <div class="card">
+      <div class="photo"><img src="images/hug.JPG" alt="Разговорные клубы" loading="lazy" decoding="async"></div>
+      <h3>Разговорные клубы</h3>
+    </div>
+    <div class="card">
+      <div class="photo"><img src="images/halloween.jpg" alt="Тематические праздники" loading="lazy" decoding="async"></div>
+      <h3>Тематические праздники</h3>
+    </div>
+    <div class="card">
+      <div class="photo"><img src="images/chinese.JPG" alt="Китайский язык" loading="lazy" decoding="async"></div>
+      <h3>Китайский язык</h3>
+    </div>
+    <div class="card">
+      <div class="photo"><img src="images/masteclass.JPG" alt="Творческие мастерклассы" loading="lazy" decoding="async"></div>
+      <h3>Творческие мастерклассы</h3>
+    </div>
+    <div class="card">
+      <div class="photo"><img src="images/exam.jpg" alt="Научный кружок" loading="lazy" decoding="async"></div>
+      <h3>Подготовка к международным экзаменам Cambridge</h3>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Программа обучения</h2>
 
   <p class="section-sub">
     На уроках ребята занимаются по авторской программе,
@@ -248,36 +371,15 @@
 
   <div class="grid">
     <div class="card">
-      <div class="photo"><img src="images/cambridge.png"></div>
-      <h3>Cambridge University Press</h3>
-      <p>Топовые учебники от ведущего мирового издательства</p>
+      <div class="photo"><img src="images/cambridge.png" alt="Cambridge University Press" loading="lazy" decoding="async"></div>
+      <h3>Ведущие мировые издательства</h3>
+      <p>Используем собственные разработки на базе топовых учебников Cambridge University Press, National Geographic, Oxford University Press</p>
     </div>
 
     <div class="card">
-      <div class="photo"><img src="images/oxford.png"></div>
-      <h3>Oxford University Press</h3>
-      <p>Проверенные методики и современные подходы</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Внеклассные мероприятия</h2>
-
-  <div class="grid">
-    <div>
-      <div class="photo"><img src="images/halloween.jpg"></div>
-      <div class="caption">Тематические праздники</div>
-    </div>
-
-    <div>
-      <div class="photo"><img src="images/hug.JPG"></div>
-      <div class="caption">Разговорный клуб и уроки с носителями языка</div>
-    </div>
-
-    <div>
-      <div class="photo"><img src="images/ceramics.JPG"></div>
-      <div class="caption">Творческие мастер-классы и наука для самых маленьких</div>
+      <div class="photo"><img src="images/practice.jpg" alt="Oxford University Press" loading="lazy" decoding="async"></div>
+      <h3>Практика и закрепление</h3>
+      <p>Дополняем учебники разговорными заданиями, играми и проектной работой для активного использования языка</p>
     </div>
   </div>
 </section>
@@ -286,8 +388,8 @@
   <h2>Летняя программа</h2>
 
   <div class="grid">
-    <div class="photo free"><img src="images/camp.JPG"></div>
-    <div class="photo free"><img src="images/camp2.jpg"></div>
+    <div class="photo free fade-item"><img src="images/camp.JPG" alt="Летняя программа" loading="lazy" decoding="async"></div>
+    <div class="photo free fade-item"><img src="images/camp2.jpg" alt="Летняя программа 2" loading="lazy" decoding="async"></div>
   </div>
 
   <ul>
@@ -302,10 +404,10 @@
 
 <section>
   <div style="max-width:720px;margin:auto;text-align:center;">
-    <div class="photo free">
-      <img src="images/max.jpg">
+    <div class="photo free fade-item">
+      <img src="images/max.jpg" alt="Макс" loading="lazy" decoding="async">
     </div>
-    <p style="font-size:22px;margin-top:30px;">
+    <p style="font-size:22px;margin-top:30px;" class="fade-item">
       Мы вас ждём 🤍
     </p>
   </div>
@@ -319,13 +421,33 @@
   </p>
   <p style="margin-top:18px;font-size:13px;opacity:.7;">
     Автор - Виктория Громова ·
-    <a href="https://instagram.com/dawn.deformee" target="_blank">@dawn.deformee</a>
+    <a href="https://instagram.com/dawn.deformee  " target="_blank">@dawn.deformee</a>
   </p>
 </footer>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    document.querySelectorAll('.fade-item').forEach(item => {
+      observer.observe(item);
+    });
+
+    document.querySelector('section').classList.add('visible');
+  });
+</script>
+
 </body>
 </html>
-
-
 
 

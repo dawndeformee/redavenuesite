@@ -4,12 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Абонементы — RED AVENUE SCHOOL</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:ital,wght@0,400;1,400&family=Allura&display=swap" rel="stylesheet">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com  ">
+  <link rel="preconnect" href="https://fonts.gstatic.com  " crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display  :wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  
   <style>
     :root {
       --brand: #ba382e;
-      --soft-black: #222222;
+      --soft-black: #1f1f1f;
       --bg: #f8f3ed;
+      --section-gap: 80px;
     }
     * { box-sizing: border-box; }
     body {
@@ -17,55 +22,111 @@
       font-family: 'Inter', sans-serif;
       background: var(--bg);
       color: var(--soft-black);
+      line-height: 1.7;
     }
     header {
-      padding: 30px 20px;
+      padding: 80px 20px;
       text-align: center;
     }
     .logo {
       font-family: 'Playfair Display', serif;
-      font-size: 36px;
+      font-size: 48px;
       color: var(--brand);
       letter-spacing: 2px;
     }
     .subtitle {
-      font-family: 'Allura', cursive;
-      font-size: 24px;
+      font-family: 'Mrs Saint Delafield', cursive;
+      font-size: 48px;
+      margin-top: 6px;
     }
     nav {
-      margin-top: 20px;
+      margin-top: 30px;
     }
     nav a {
-      margin: 0 10px;
+      margin: 0 14px;
       text-decoration: none;
       color: var(--soft-black);
+      font-size: 14px;
     }
     section {
-      max-width: 1100px;
+      max-width: 1200px;
       margin: auto;
-      padding: 60px 20px;
+      padding: var(--section-gap) 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
     h2 {
       font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 600;
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 40px;
     }
     .card {
       background: white;
-      padding: 25px;
-      border-radius: 20px;
+      padding: 28px;
+      border-radius: 28px;
       text-align: center;
+      transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 340px;
+    }
+    .card:hover {
+      transform: translateY(-5px);
     }
     .photo {
       height: 180px;
-      background: #ddd;
-      border-radius: 14px;
+      border-radius: 28px;
+      overflow: hidden;
       margin-bottom: 20px;
+      background: #ddd;
+    }
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card strong {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 24px;
+      display: block;
+      margin-bottom: 16px;
+    }
+    .description {
+      margin-bottom: 16px;
+      font-size: 15px;
+    }
+    .price {
+      font-weight: 600;
+      font-size: 22px;
+      color: var(--brand);
+      margin-top: 8px;
+    }
+    
+    footer {
+      padding: var(--section-gap) 20px;
+      text-align: center;
+      background: #111;
+      color: #eee;
+      font-size: 14px;
+    }
+    
+    footer a {
+      color: #eee;
+      text-decoration: none;
     }
   </style>
 </head>
@@ -76,8 +137,8 @@
   <div class="subtitle">english school</div>
   <nav>
     <a href="index.html">Главная</a>
-    <a href="prices.html">Абонементы</a>
     <a href="teachers.html">Преподаватели</a>
+    <a href="prices.html">Абонементы</a>
     <a href="contacts.html">Контакты</a>
   </nav>
 </header>
@@ -86,28 +147,77 @@
   <h2>Абонементы</h2>
   <div class="grid">
     <div class="card">
-      <div class="photo"></div>
-      <strong>Групповые занятия</strong><br><br>
-      2–6 детей в группе<br>
-      развитие речи и уверенности<br><br>
-      от (цена)
+      <div class="photo">
+        <img src="images/groupprices.jpg" alt="Групповые занятия" loading="lazy" decoding="async">
+      </div>
+      <strong>Групповые занятия</strong>
+      <div class="description">2–6 детей в группе, развитие речи и уверенности</div>
+      <div class="price">от 850 ₽</div>
     </div>
     <div class="card">
-      <div class="photo"></div>
-      <strong>Индивидуальные занятия</strong><br><br>
-      1 на 1 с преподавателем<br>
-      персональный темп<br><br>
-      от (цена)
+      <div class="photo">
+        <img src="images/arina.jpg" alt="Индивидуальные занятия" loading="lazy" decoding="async">
+      </div>
+      <strong>Индивидуальные занятия</strong>
+      <div class="description">1 на 1 с преподавателем, персональный темп</div>
+      <div class="price">от 1500 ₽</div>
     </div>
     <div class="card">
-      <div class="photo"></div>
-      <strong>Онлайн занятия</strong><br><br>
-      занятия из любой точки мира<br>
-      удобно для родителей<br><br>
-      от (цена)
+      <div class="photo">
+        <img src="images/individual.jpg" alt="Онлайн занятия" loading="lazy" decoding="async">
+      </div>
+      <strong>Онлайн занятия</strong>
+      <div class="description">Занятия из любой точки мира, удобно для родителей</div>
+      <div class="price">от 1500 ₽</div>
+    </div>
+    <div class="card">
+      <div class="photo">
+        <img src="images/speakingclub.JPG" alt="Разговорные клубы с носителем языка" loading="lazy" decoding="async">
+      </div>
+      <strong>Разговорные клубы с носителем</strong>
+      <div class="description">Практика живой речи с носителями языка</div>
+      <div class="price">от 1000 ₽</div>
+    </div>
+    <div class="card">
+      <div class="photo">
+        <img src="images/ujik.jpg" alt="Занятия китайским с носителем" loading="lazy" decoding="async">
+      </div>
+      <strong>Китайский с носителем</strong>
+      <div class="description">Изучение китайского языка с преподавателем-носителем</div>
+      <div class="price">от 1200 ₽</div>
     </div>
   </div>
 </section>
+
+<footer>
+  <p>RED AVENUE SCHOOL</p>
+  <p>
+    <a href="public_offer.html">Публичная оферта</a> ·
+    <a href="policy.html">Политика конфиденциальности</a>
+  </p>
+  <p style="margin-top:18px;font-size:13px;opacity:.7;">
+    Автор — Виктория Громова ·
+    <a href="https://instagram.com/dawn.deformee  " target="_blank">@dawn.deformee</a>
+  </p>
+</footer>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('section').forEach(section => {
+      observer.observe(section);
+    });
+
+    document.querySelector('section').classList.add('visible');
+  });
+</script>
 
 </body>
 </html>
