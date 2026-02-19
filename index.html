@@ -1,453 +1,1787 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RED AVENUE SCHOOL — English for Kids</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RED AVENUE — English School для детей в Калининграде</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Mrs+Saint+Delafield&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ==========================================
+   RESET & ROOT
+   ========================================== */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com  ">
-  <link rel="preconnect" href="https://fonts.gstatic.com  " crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display  :wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --brand: #ba382e;
-      --soft-black: #1f1f1f;
-      --bg: #f8f3ed;
-      --section-gap: 80px;
-    }
+:root {
+  --red:       #ba382e;
+  --dark-red:  #8f2920;
+  --cream:     #f8f3ed;
+  --warm:      #fdfaf6;
+  --dark:      #1f1f1f;
+  --muted:     #6b5e52;
+  --border:    rgba(186,56,46,0.14);
+  --light-border: rgba(31,31,31,0.08);
+}
 
-    * { box-sizing: border-box; }
+/* ==========================================
+   PAPER TEXTURE SYSTEM
+   ========================================== */
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--soft-black);
-      line-height: 1.7;
-    }
+/* SVG noise filter defined inline, applied via CSS */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
 
-    header {
-      padding: 80px 20px;
-      text-align: center;
-    }
+/* Grain overlay on cream sections */
+.section--cream::after,
+.section--alt::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
+.section--cream, .section--alt { position: relative; }
+.section--cream .container,
+.section--alt .container { position: relative; z-index: 1; }
 
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 48px;
-      color: var(--brand);
-      letter-spacing: 2px;
-    }
+/* Hero texture */
+.hero::before, .hero::after { z-index: 1; }
+.hero .hero-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  z-index: 0;
+}
 
-    .subtitle {
-      font-family: 'Mrs Saint Delafield', cursive;
-      font-size: 48px;
-      margin-top: 6px;
-    }
+/* ==========================================
+   DECORATIVE ELEMENT STYLES
+   ========================================== */
 
-    nav {
-      margin-top: 30px;
-    }
+/* Floating stickers / deco — pointer-events none, absolute */
+.deco { position: absolute; pointer-events: none; z-index: 2; }
 
-    nav a {
-      margin: 0 14px;
-      text-decoration: none;
-      color: var(--soft-black);
-      font-size: 14px;
-    }
+/* Sticky note (yellow square note) */
+.sticky {
+  position: absolute;
+  pointer-events: none;
+  z-index: 4;
+  padding: 14px 16px 18px;
+  background: #f5d76e;
+  box-shadow: 2px 4px 14px rgba(0,0,0,0.13), 0 1px 2px rgba(0,0,0,0.08);
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: 18px;
+  color: #2d2010;
+  line-height: 1.35;
+  max-width: 148px;
+}
+.sticky::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 6px;
+  background: rgba(0,0,0,0.07);
+}
+.sticky.pink {
+  background: #f9c8c8;
+  color: #2d1010;
+}
+.sticky.green {
+  background: #c8eac0;
+  color: #102210;
+}
+.sticky.blue {
+  background: #c0d8f0;
+  color: #101828;
+}
 
-    .hero-text {
-      max-width: 720px;
-      margin: 50px auto 0;
-      font-size: 20px;
-      font-weight: 300;
-    }
+/* Tape strip */
+.tape {
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+  width: 60px;
+  height: 22px;
+  background: rgba(230,210,170,0.55);
+  border: 1px solid rgba(200,180,140,0.4);
+  backdrop-filter: blur(0px);
+}
+.tape::before {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent,
+    transparent 3px,
+    rgba(255,255,255,0.25) 3px,
+    rgba(255,255,255,0.25) 4px
+  );
+}
 
-    .cta {
-      margin-top: 40px;
-    }
+/* Washi tape — horizontal strip going across element */
+.washi {
+  position: absolute;
+  pointer-events: none;
+  z-index: 5;
+  height: 18px;
+  left: -10px; right: -10px;
+  background: rgba(186,56,46,0.12);
+  border-top: 1px dashed rgba(186,56,46,0.2);
+  border-bottom: 1px dashed rgba(186,56,46,0.2);
+}
+.washi.yellow {
+  background: rgba(242,201,76,0.25);
+  border-color: rgba(200,160,40,0.25);
+}
+.washi.sage {
+  background: rgba(139,175,141,0.2);
+  border-color: rgba(100,140,100,0.2);
+}
 
-    .cta a {
-      display: inline-block;
-      padding: 16px 34px;
-      background: var(--brand);
-      color: white;
-      text-decoration: none;
-      border-radius: 40px;
-      font-size: 15px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-    }
+/* Hand-drawn underline */
+.hand-underline {
+  position: relative;
+  display: inline;
+}
+.hand-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0; right: 0;
+  height: 3px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 8' preserveAspectRatio='none'%3E%3Cpath d='M0 6 Q25 2 50 5 Q75 8 100 4 Q125 1 150 5 Q175 7 200 3' stroke='%23ba382e' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/100% 100%;
+}
 
-    .cta a:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(186, 56, 46, 0.3);
-    }
+/* Handwritten annotation */
+.annotation {
+  position: absolute;
+  pointer-events: none;
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: 22px;
+  color: var(--red);
+  opacity: 0.55;
+  white-space: nowrap;
+  z-index: 3;
+}
+.annotation.dark {
+  color: var(--dark);
+  opacity: 0.3;
+}
 
-    .consent {
-      margin-top: 14px;
-      font-size: 12px;
-      color: #666;
-      list-style: none;
-      padding: 0;
-    }
+/* Doodle arrow (SVG inline) */
+.doodle-arrow {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0.4;
+}
 
-    .consent a {
-      color: inherit;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 2px;
-      background: none;
-      border: none;
-      padding: 0;
-      margin: 0;
-      display: inline;
-      font-size: inherit;
-    }
+/* Star burst */
+.starburst {
+  position: absolute;
+  pointer-events: none;
+  z-index: 3;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-    .consent a:hover {
-      color: var(--brand);
-      text-decoration: underline;
-      text-decoration-thickness: 1.5px;
-    }
+/* Photo frame overlay (decorative border on images) */
+.frame-wrap {
+  position: relative;
+}
+.frame-wrap::after {
+  content: '';
+  position: absolute;
+  top: 10px; left: 10px;
+  right: -10px; bottom: -10px;
+  border: 1.5px solid rgba(186,56,46,0.22);
+  pointer-events: none;
+  z-index: 0;
+}
+.frame-wrap > * { position: relative; z-index: 1; }
 
-    section {
-      padding: var(--section-gap) 20px;
-      max-width: 1200px;
-      margin: auto;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+/* ==========================================
+   NAV
+   ========================================== */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--warm);
+  border-bottom: 1px solid var(--light-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 48px;
+  height: 68px;
+}
 
-    section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  text-decoration: none;
+  line-height: 1;
+}
+.nav-logo-main {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--red);
+  text-transform: uppercase;
+}
+.nav-logo-sub {
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: 17px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+  margin-top: 1px;
+}
 
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 42px;
-      font-weight: 600;
-      text-align: center;
-      margin-bottom: 20px;
-    }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 12.5px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dark);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--red); }
 
-    .section-sub {
-      text-align: center;
-      max-width: 680px;
-      margin: 0 auto 70px;
-      font-size: 18px;
-      font-weight: 300;
-    }
+.btn-nav {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--red) !important;
+  border: 1.5px solid var(--red);
+  padding: 9px 22px;
+  transition: all 0.22s;
+}
+.btn-nav:hover {
+  background: var(--red) !important;
+  color: #fff !important;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
+/* ==========================================
+   HERO
+   ========================================== */
+.hero {
+  min-height: 100vh;
+  background: var(--warm);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 80px 40px 60px;
+  position: relative;
+  overflow: hidden;
+}
 
-    .photo {
-      height: 280px;
-      border-radius: 28px;
-      overflow: hidden;
-      margin-bottom: 14px;
-    }
+/* Corner frames */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 36px; left: 36px;
+  width: 70px; height: 70px;
+  border-top: 1.5px solid rgba(186,56,46,0.25);
+  border-left: 1.5px solid rgba(186,56,46,0.25);
+  pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 36px; right: 36px;
+  width: 70px; height: 70px;
+  border-bottom: 1.5px solid rgba(186,56,46,0.25);
+  border-right: 1.5px solid rgba(186,56,46,0.25);
+  pointer-events: none;
+}
 
-    .group-section .photo {
-      height: 360px;
-    }
+/* SVG decorations inside hero */
+.hero-deco {
+  position: absolute;
+  pointer-events: none;
+}
 
-    .photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+.hero-city {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+  opacity: 0.7;
+}
 
-    .photo.free {
-      height: auto;
-      margin-bottom: 0;
-    }
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(72px, 11vw, 130px);
+  font-weight: 900;
+  color: var(--dark);
+  text-transform: uppercase;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+.hero-title .red { color: var(--red); }
 
-    .photo.free img {
-      height: auto;
-      object-fit: initial;
-      border-radius: 28px;
-    }
+.hero-cursive {
+  font-family: 'Mrs Saint Delafield', cursive;
+  font-size: clamp(32px, 5vw, 52px);
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+  margin-bottom: 48px;
+  display: block;
+}
 
-    .caption {
-      text-align: center;
-      font-size: 15px;
-      font-weight: 300;
-    }
+.hero-taglines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 52px;
+}
+.hero-tagline {
+  font-size: 14.5px;
+  font-weight: 300;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+.hero-tagline::before {
+  content: '—\00a0';
+  color: var(--red);
+  opacity: 0.5;
+}
 
-    .card {
-      background: white;
-      padding: 28px;
-      border-radius: 28px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
+.btn-primary {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--red);
+  padding: 17px 46px;
+  border: 2px solid var(--red);
+  position: relative;
+  transition: all 0.25s;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(186,56,46,0.3);
+  pointer-events: none;
+  transition: inset 0.25s;
+}
+.btn-primary:hover { background: transparent; color: var(--red); }
+.btn-primary:hover::after { inset: -10px; }
 
-    .card:hover {
-      transform: translateY(-5px);
-    }
+.hero-note {
+  font-size: 11.5px;
+  color: var(--muted);
+  opacity: 0.6;
+  margin-top: 14px;
+}
+.hero-note a { color: var(--red); text-decoration: none; }
 
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      margin-top: 12px;
-      font-size: 24px;
-    }
+/* ==========================================
+   FULL-WIDTH PHOTO SLOT
+   ========================================== */
+.photo-slot {
+  width: 100%;
+  display: block;
+  /* Замените src на вашу фотографию */
+  /* <img class="photo-slot" src="images/ВАШЕ_ФОТО.jpg" alt="Red Avenue"> */
+}
+.photo-slot-placeholder {
+  width: 100%;
+  height: 65vh;
+  min-height: 400px;
+  background: #d4c0b4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.photo-slot-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 30px,
+    rgba(255,255,255,0.04) 30px,
+    rgba(255,255,255,0.04) 31px
+  );
+}
+.photo-slot-placeholder-label {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.08em;
+  text-align: center;
+  z-index: 1;
+  padding: 0 20px;
+}
+.photo-slot-placeholder-label code {
+  display: block;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+  opacity: 0.6;
+  font-style: normal;
+}
 
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      max-width: 1000px;
-      margin: auto;
-    }
+/* ==========================================
+   PHILOSOPHY
+   ========================================== */
+.philosophy {
+  background: var(--dark);
+  padding: 110px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.philosophy::before {
+  content: '';
+  position: absolute;
+  top: -120px; left: 50%;
+  transform: translateX(-50%);
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(186,56,46,0.1) 0%, transparent 65%);
+  pointer-events: none;
+}
 
-    .step {
-      background: white;
-      padding: 32px 24px;
-      border-radius: 28px;
-      text-align: center;
-    }
+.philosophy-frame {
+  max-width: 820px;
+  margin: 0 auto;
+  border: 1px solid rgba(186,56,46,0.2);
+  padding: 70px 80px;
+  position: relative;
+}
+/* Corner ornaments */
+.philosophy-frame::before {
+  content: '✦';
+  position: absolute;
+  top: -11px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark);
+  padding: 0 14px;
+  font-size: 16px;
+  color: var(--red);
+  opacity: 0.5;
+}
+.philosophy-frame::after {
+  content: '✦';
+  position: absolute;
+  bottom: -11px; left: 50%;
+  transform: translateX(-50%);
+  background: var(--dark);
+  padding: 0 14px;
+  font-size: 16px;
+  color: var(--red);
+  opacity: 0.5;
+}
 
-    .step-number {
-      display: inline-block;
-      width: 40px;
-      height: 40px;
-      background: var(--brand);
-      color: white;
-      border-radius: 50%;
-      line-height: 40px;
-      font-weight: 600;
-      margin-bottom: 16px;
-    }
+.philosophy-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4.5vw, 50px);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #fff;
+  line-height: 1.1;
+  margin-bottom: 52px;
+}
+.philosophy-quote em {
+  color: var(--red);
+  font-style: normal;
+}
 
-    .step h3 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      font-size: 22px;
-      margin-bottom: 12px;
-    }
+.philosophy-body {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: clamp(17px, 2vw, 21px);
+  line-height: 1.85;
+  color: rgba(255,255,255,0.6);
+}
+.philosophy-body strong {
+  font-style: normal;
+  color: rgba(255,255,255,0.85);
+  font-weight: 600;
+}
 
-    ul {
-      padding-left: 20px;
-      margin-top: 20px;
-    }
+/* ==========================================
+   SECTION COMMONS
+   ========================================== */
+.section { padding: 100px 40px; }
+.section--alt { background: var(--warm); }
+.section--cream { background: var(--cream); }
 
-    footer {
-      padding: var(--section-gap) 20px;
-      text-align: center;
-      background: #111;
-      color: #eee;
-      font-size: 14px;
-    }
+.container { max-width: 1100px; margin: 0 auto; }
 
-    footer a {
-      color: #eee;
-      text-decoration: none;
-    }
+.sec-label {
+  display: block;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+  opacity: 0.85;
+}
+.sec-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 4.5vw, 50px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--dark);
+  margin-bottom: 12px;
+}
+.sec-lead {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 580px;
+}
 
-    .fade-item {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
+/* ==========================================
+   DIRECTIONS GRID
+   ========================================== */
+.directions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 56px;
+}
 
-    .fade-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+.dir-card {
+  background: var(--warm);
+  border: 1px solid var(--light-border);
+  position: relative;
+  overflow: hidden;
+}
+.dir-card-photo {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+.dir-card:hover .dir-card-photo { transform: scale(1.04); }
+
+/* Photo placeholder */
+.dir-card-placeholder {
+  width: 100%;
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 0.7s ease;
+  text-align: center;
+  padding: 20px;
+}
+.dir-card:hover .dir-card-placeholder { transform: scale(1.04); }
+
+.dir-card-body {
+  padding: 26px 28px 30px;
+}
+.dir-card-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: block;
+  margin-bottom: 7px;
+  opacity: 0.8;
+}
+.dir-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 21px;
+  font-weight: 600;
+  color: var(--dark);
+  line-height: 1.25;
+}
+
+/* Paperclip SVG */
+.paperclip {
+  position: absolute;
+  top: -16px;
+  left: 22px;
+  z-index: 3;
+}
+
+/* ==========================================
+   TEACHERS
+   ========================================== */
+.teachers-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 56px;
+}
+.teacher-card {
+  display: flex;
+  gap: 28px;
+  align-items: flex-start;
+}
+.teacher-photo-wrap {
+  flex-shrink: 0;
+  width: 160px;
+  position: relative;
+}
+.teacher-photo-wrap::after {
+  content: '';
+  position: absolute;
+  bottom: -8px; right: -8px;
+  width: 100%; height: 100%;
+  border: 1.5px solid rgba(186,56,46,0.2);
+  pointer-events: none;
+}
+.teacher-photo {
+  width: 160px;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+.teacher-placeholder {
+  width: 160px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+  position: relative;
+  z-index: 1;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  padding: 12px;
+}
+.teacher-info { padding-top: 4px; }
+.teacher-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.teacher-role {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 14px;
+  opacity: 0.8;
+}
+.teacher-desc {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.teacher-edu {
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--muted);
+  opacity: 0.75;
+}
+.teacher-edu span {
+  font-weight: 600;
+  color: var(--dark);
+  opacity: 1;
+}
+
+/* ==========================================
+   METHODOLOGY
+   ========================================== */
+.methodology-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 56px;
+}
+.methodology-photo-wrap { position: relative; }
+.methodology-photo {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+.methodology-placeholder {
+  width: 100%;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.5);
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+  padding: 20px;
+}
+.methodology-sticker {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 88px; height: 88px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  line-height: 1.3;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(186,56,46,0.3);
+  z-index: 2;
+}
+.methodology-sticker b {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+.publishers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.publisher-tag {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--cream);
+}
+
+/* ==========================================
+   PROCESS / HOW IT WORKS
+   ========================================== */
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  margin-top: 60px;
+  border: 1px solid var(--light-border);
+}
+.step {
+  padding: 36px 30px 40px;
+  border-right: 1px solid var(--light-border);
+  position: relative;
+}
+.step:last-child { border-right: none; }
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 52px;
+  font-weight: 900;
+  color: rgba(186,56,46,0.12);
+  line-height: 1;
+  margin-bottom: 16px;
+}
+.step-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: var(--dark);
+}
+.step-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ==========================================
+   REVIEWS
+   ========================================== */
+.reviews-section { background: var(--dark); }
+.reviews-section .sec-label { color: rgba(186,56,46,0.8); }
+.reviews-section .sec-title { color: #fff; }
+.reviews-section .sec-lead { color: rgba(255,255,255,0.45); }
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.review-card {
+  border: 1px solid rgba(255,255,255,0.07);
+  padding: 36px 30px 32px;
+  position: relative;
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s;
+}
+.review-card:hover { border-color: rgba(186,56,46,0.3); }
+.review-card::before {
+  content: '\201C';
+  font-family: 'Playfair Display', serif;
+  font-size: 90px;
+  line-height: 0.8;
+  position: absolute;
+  top: 20px; left: 20px;
+  color: var(--red);
+  opacity: 0.18;
+}
+.review-text {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.68);
+  padding-top: 28px;
+  margin-bottom: 24px;
+}
+.review-divider {
+  width: auto;
+  height: auto;
+  background: none;
+  opacity: 1;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.review-divider::before,
+.review-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(186,56,46,0.18);
+}
+/* Gold textured star used as divider element */
+.star-divider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.star-divider svg {
+  filter: drop-shadow(0 0 3px rgba(212,175,55,0.5));
+}
+.review-author {
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.review-role {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 3px;
+}
+
+.reviews-note {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+  font-style: italic;
+}
+
+/* ==========================================
+   GALLERY
+   ========================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: 280px 280px;
+  gap: 12px;
+  margin-top: 56px;
+}
+.gallery-item {
+  overflow: hidden;
+  position: relative;
+  background: #c4b0a8;
+}
+.gallery-item:first-child { grid-row: span 2; }
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease;
+}
+.gallery-item:hover img { transform: scale(1.06); }
+
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', monospace;
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: rgba(255,255,255,0.4);
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  padding: 16px;
+  transition: transform 0.7s ease;
+}
+.gallery-item:hover .gallery-placeholder { transform: scale(1.06); }
+
+.gp1 { background: #c8aea4; }
+.gp2 { background: #b0a898; }
+.gp3 { background: #a8b4a8; }
+.gp4 { background: #c4b890; }
+.gp5 { background: #b8aac4; }
+
+/* ==========================================
+   PRICES SECTION
+   ========================================== */
+.prices-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 56px;
+}
+.price-card {
+  border: 1px solid var(--light-border);
+  padding: 36px 28px 32px;
+  background: var(--warm);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.price-card:hover {
+  border-color: var(--border);
+  transform: translateY(-4px);
+}
+.price-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.price-card-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 16px;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.price-star-divider {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.price-star-divider svg {
+  filter: drop-shadow(0 0 2px rgba(212,175,55,0.45));
+}
+.price-card-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--red);
+}
+.price-card-price span {
+  font-size: 14px;
+  font-weight: 400;
+  font-family: 'Inter', sans-serif;
+  color: var(--muted);
+  margin-left: 4px;
+}
+
+/* ==========================================
+   CTA FINAL
+   ========================================== */
+.cta-final {
+  background: var(--red);
+  padding: 100px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: -80px;
+  width: 350px; height: 350px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.cta-final::after {
+  content: '';
+  position: absolute;
+  bottom: -80px; right: -80px;
+  width: 350px; height: 350px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cta-final-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4.5vw, 52px);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  position: relative;
+}
+.cta-final-sub {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 44px;
+  position: relative;
+}
+.btn-white {
+  display: inline-block;
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--red);
+  background: #fff;
+  padding: 17px 50px;
+  position: relative;
+  transition: all 0.25s;
+}
+.btn-white:hover {
+  background: var(--dark);
+  color: #fff;
+}
+
+/* ==========================================
+   FOOTER
+   ========================================== */
+footer {
+  background: #111;
+  color: rgba(255,255,255,0.38);
+  padding: 48px 48px;
+}
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+}
+.footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-links a {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--red); }
+.footer-credit { font-size: 11.5px; }
+
+/* ==========================================
+   SCROLL REVEAL
+   ========================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.72s ease, transform 0.72s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 960px) {
+  nav { padding: 0 20px; }
+  .nav-links { gap: 16px; }
+  .hero { padding: 60px 20px 40px; }
+  .section { padding: 70px 20px; }
+  .philosophy { padding: 70px 20px; }
+  .philosophy-frame { padding: 40px 28px; }
+  .directions-grid { grid-template-columns: 1fr; }
+  .teachers-grid { grid-template-columns: 1fr; }
+  .methodology-inner { grid-template-columns: 1fr; gap: 40px; }
+  .process-steps { grid-template-columns: 1fr 1fr; }
+  .step { border-right: none; border-bottom: 1px solid var(--light-border); }
+  .step:nth-child(even) { border-right: none; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .prices-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: 220px 220px 220px; }
+  .gallery-item:first-child { grid-row: span 2; }
+  .cta-final { padding: 70px 20px; }
+  footer { padding: 40px 20px; }
+}
+
+@media (max-width: 620px) {
+  .nav-links .hide-mobile { display: none; }
+  .process-steps { grid-template-columns: 1fr; }
+  .prices-grid { grid-template-columns: 1fr; }
+  .gallery-grid { grid-template-columns: 1fr; grid-template-rows: auto; }
+  .gallery-item:first-child { grid-row: span 1; height: 280px; }
+  .gallery-item { height: 200px; }
+  .philosophy-frame::before,
+  .philosophy-frame::after { display: none; }
+  .teacher-card { flex-direction: column; }
+  .teacher-photo-wrap { width: 100%; }
+  .teacher-photo, .teacher-placeholder { width: 100%; height: 260px; }
+}
+</style>
 </head>
-
 <body>
 
-<header>
-  <div class="logo">RED AVENUE</div>
-  <div class="subtitle">english school</div>
-
-  <nav>
-    <a href="index.html">Главная</a>
-    <a href="teachers.html">Преподаватели</a>
-    <a href="prices.html">Абонементы</a>
-    <a href="contacts.html">Контакты</a>
-  </nav>
-
-  <div class="hero-text">
-    Курсы английского языка для детей.<br>
-    Маленькие группы, живое общение и результат,
-    который видят родители и любят дети.
-  </div>
-
-  <div class="cta">
-    <a href="https://t.me/taisie_taya  " target="_blank">
-      Записаться на пробное занятие
-    </a>
-    <div class="consent">
-      Нажимая кнопку «Записаться», вы соглашаетесь с
-      <a href="policy.html">Политикой конфиденциальности</a>
-    </div>
-  </div>
-</header>
-
-<section class="group-section">
-  <h2>Групповые занятия</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="photo"><img src="images/group.jpg" alt="Групповое занятие" loading="lazy" decoding="async"></div>
-      <h3>Групповые занятия английским</h3>
-      <p>Социализация, командная работа и уверенность в речи</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Как проходит обучение</h2>
-  <div class="steps-grid">
-    <div class="step">
-      <div class="step-number">1</div>
-      <h3>Определяем уровень</h3>
-      <p>Бесплатное тестирование для понимания текущих знаний ребёнка</p>
-    </div>
-    <div class="step">
-      <div class="step-number">2</div>
-      <h3>Подбираем группу</h3>
-      <p>Формируем комфортную компанию по возрасту и уровню</p>
-    </div>
-    <div class="step">
-      <div class="step-number">3</div>
-      <h3>Регулярная практика речи</h3>
-      <p>Живое общение, игры и разговорные упражнения на каждом занятии</p>
-    </div>
-    <div class="step">
-      <div class="step-number">4</div>
-      <h3>Отслеживаем прогресс</h3>
-      <p>Родители видят результаты через регулярные отчёты и мини-презентации</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Наши направления</h2>
-  <div class="grid">
-    <div class="card">
-      <div class="photo"><img src="images/groupclass.jpg" alt="Групповые занятия английским" loading="lazy" decoding="async"></div>
-      <h3>Групповые занятия английским</h3>
-    </div>
-    <div class="card">
-      <div class="photo"><img src="images/hug.JPG" alt="Разговорные клубы" loading="lazy" decoding="async"></div>
-      <h3>Разговорные клубы</h3>
-    </div>
-    <div class="card">
-      <div class="photo"><img src="images/halloween.jpg" alt="Тематические праздники" loading="lazy" decoding="async"></div>
-      <h3>Тематические праздники</h3>
-    </div>
-    <div class="card">
-      <div class="photo"><img src="images/chinese.JPG" alt="Китайский язык" loading="lazy" decoding="async"></div>
-      <h3>Китайский язык</h3>
-    </div>
-    <div class="card">
-      <div class="photo"><img src="images/masteclass.JPG" alt="Творческие мастерклассы" loading="lazy" decoding="async"></div>
-      <h3>Творческие мастерклассы</h3>
-    </div>
-    <div class="card">
-      <div class="photo"><img src="images/exam.jpg" alt="Научный кружок" loading="lazy" decoding="async"></div>
-      <h3>Подготовка к международным экзаменам Cambridge</h3>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Программа обучения</h2>
-
-  <p class="section-sub">
-    На уроках ребята занимаются по авторской программе,
-    написанной под каждого ученика или группу
-  </p>
-
-  <div class="grid">
-    <div class="card">
-      <div class="photo"><img src="images/cambridge.png" alt="Cambridge University Press" loading="lazy" decoding="async"></div>
-      <h3>Ведущие мировые издательства</h3>
-      <p>Используем собственные разработки на базе топовых учебников Cambridge University Press, National Geographic, Oxford University Press</p>
-    </div>
-
-    <div class="card">
-      <div class="photo"><img src="images/practice.jpg" alt="Oxford University Press" loading="lazy" decoding="async"></div>
-      <h3>Практика и закрепление</h3>
-      <p>Дополняем учебники разговорными заданиями, играми и проектной работой для активного использования языка</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Летняя программа</h2>
-
-  <div class="grid">
-    <div class="photo free fade-item"><img src="images/camp.JPG" alt="Летняя программа" loading="lazy" decoding="async"></div>
-    <div class="photo free fade-item"><img src="images/camp2.jpg" alt="Летняя программа 2" loading="lazy" decoding="async"></div>
-  </div>
-
-  <ul>
-    <li>🕗 Утренняя зарядка на ковриках</li>
-    <li>🥐 Завтраки от «Булочек ранней пташки»</li>
-    <li>🇬🇧 Английский с носителем языка</li>
-    <li>🎨 Творческие мастер-классы</li>
-    <li>⭐ Конкурс талантов</li>
-    <li>🌍 Уроки китайского, французского, испанского и других языков</li>
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-main">Red Avenue</span>
+    <span class="nav-logo-sub">english school</span>
+  </a>
+  <ul class="nav-links">
+    <li class="hide-mobile"><a href="#directions">Направления</a></li>
+    <li class="hide-mobile"><a href="#teachers">Преподаватели</a></li>
+    <li class="hide-mobile"><a href="#prices">Абонементы</a></li>
+    <li class="hide-mobile"><a href="#contacts">Контакты</a></li>
+    <li><a href="https://t.me/taisie_taya" class="btn-nav" target="_blank">Пробный урок</a></li>
   </ul>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+
+  <!-- Paper texture -->
+  <div class="hero-texture"></div>
+
+  <!-- PAPERCLIP top-left — realistic, with shadow -->
+  <svg class="deco" style="top:44px;left:68px;width:28px;opacity:0.38;transform:rotate(-18deg);filter:drop-shadow(1px 2px 3px rgba(0,0,0,0.15))" viewBox="0 0 28 80" fill="none">
+    <path d="M14 5C9.029 5 5 9.029 5 14v42c0 8.284 6.716 15 15 15s15-6.716 15-15V14c0-5.523-4.477-10-10-10" stroke="#7a6a5a" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14 12v42c0 4.418 3.582 8 8 8s8-3.582 8-8V14" stroke="#7a6a5a" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14 5C9.029 5 5 9.029 5 14v42c0 8.284 6.716 15 15 15s15-6.716 15-15V14c0-5.523-4.477-10-10-10" stroke="rgba(255,255,255,0.3)" stroke-width="0.8" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Star doodle top-right -->
+  <svg class="deco" style="top:52px;right:72px;width:38px;opacity:0.22" viewBox="0 0 38 38">
+    <path d="M19 3 L22 14H34L24.5 20.5L28 32L19 25.5L10 32L13.5 20.5L4 14H16Z" fill="#ba382e"/>
+  </svg>
+
+
+
+  <!-- Small paperclip bottom-right -->
+  <svg class="deco" style="bottom:52px;right:68px;width:20px;opacity:0.25;transform:rotate(25deg)" viewBox="0 0 28 80" fill="none">
+    <path d="M14 5C9.029 5 5 9.029 5 14v42c0 8.284 6.716 15 15 15s15-6.716 15-15V14c0-5.523-4.477-10-10-10" stroke="#7a6a5a" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M14 12v42c0 4.418 3.582 8 8 8s8-3.582 8-8V14" stroke="#7a6a5a" stroke-width="2.5" stroke-linecap="round"/>
+  </svg>
+
+  <!-- Circle ornament bottom-left -->
+  <svg class="deco" style="bottom:52px;left:56px;width:52px;opacity:0.1" viewBox="0 0 52 52">
+    <circle cx="26" cy="26" r="24" stroke="#ba382e" stroke-width="1.5" fill="none"/>
+    <circle cx="26" cy="26" r="16" stroke="#ba382e" stroke-width="0.7" fill="none"/>
+    <circle cx="26" cy="26" r="3" fill="#ba382e" opacity="0.4"/>
+  </svg>
+
+  <p class="hero-city">Калининград · English for Kids</p>
+  <h1 class="hero-title"><span class="red">Red</span> Avenue</h1>
+  <span class="hero-cursive">english school</span>
+
+  <div class="hero-taglines">
+    <p class="hero-tagline">Студия английского языка для детей в Калининграде</p>
+    <p class="hero-tagline">Эффективные и интересные уроки в мини-группах</p>
+    <p class="hero-tagline">Профессиональные преподаватели</p>
+    <p class="hero-tagline">Английский с детства</p>
+  </div>
+
+  <a href="https://t.me/taisie_taya" class="btn-primary" target="_blank">Бесплатный пробный урок</a>
+  <p class="hero-note">Нажимая кнопку, вы соглашаетесь с <a href="policy.html">политикой конфиденциальности</a></p>
 </section>
 
-<section>
-  <div style="max-width:720px;margin:auto;text-align:center;">
-    <div class="photo free fade-item">
-      <img src="images/max.jpg" alt="Макс" loading="lazy" decoding="async">
-    </div>
-    <p style="font-size:22px;margin-top:30px;" class="fade-item">
-      Мы вас ждём 🤍
+<!-- ===== FULL-WIDTH PHOTO ===== -->
+<img src="images/exam.jpg" alt="Red Avenue School" style="width:100%;height:65vh;min-height:400px;object-fit:cover;display:block;background:#d4c0b4">
+
+<!-- ===== PHILOSOPHY ===== -->
+<section class="philosophy" id="about">
+  <div class="philosophy-frame reveal">
+    <p class="philosophy-quote">
+      Знание языка формирует<br><em>масштаб личности</em>
     </p>
+    <div class="philosophy-body">
+      <strong>Мы уверены:</strong><br><br>
+      Английский язык — это не просто предмет в школе, а ключ к будущему ребёнка.
+      Но чтобы этот ключ действительно открывал двери, обучение должно приносить радость.<br><br>
+      Именно поэтому мы создали студию, где дети учатся через живое общение, мышление и интерес — <strong>Red Avenue.</strong>
+    </div>
   </div>
 </section>
 
+<!-- ===== DIRECTIONS ===== -->
+<section class="section section--cream" id="directions">
+  <div class="container">
+    <span class="sec-label reveal">Наши направления</span>
+    <h2 class="sec-title reveal">Для каждого найдётся своё</h2>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:52px">
+
+      <!-- 1 -->
+      <div style="position:relative;background:var(--warm);border:1px solid var(--light-border);overflow:hidden" class="reveal reveal-delay-1">
+        <svg style="position:absolute;top:-14px;left:20px;z-index:3;width:20px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.15));transform:rotate(-8deg);pointer-events:none" viewBox="0 0 22 58" fill="none">
+          <path d="M11 4C7.134 4 4 7.134 4 11v30c0 5.523 4.477 10 10 10s10-4.477 10-10V11c0-3.866-3.134-7-7-7" stroke="#8a7a6a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M11 9v30c0 2.761 2.239 5 5 5s5-2.239 5-5V11" stroke="#8a7a6a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M11 4C7.134 4 4 7.134 4 11v30" stroke="rgba(255,255,255,0.35)" stroke-width="0.7" stroke-linecap="round"/>
+        </svg>
+        <img src="images/group.jpg" alt="Групповые занятия английским" style="width:100%;height:240px;object-fit:cover;display:block">
+        <div style="padding:22px 24px 26px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;opacity:0.8">Основное</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--dark);line-height:1.25">Групповые занятия английским</h3>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div style="position:relative;background:var(--warm);border:1px solid var(--light-border);overflow:hidden" class="reveal reveal-delay-2">
+        <!-- Tape strip -->
+        <div style="position:absolute;top:-9px;right:24px;z-index:5;width:44px;height:18px;background:rgba(230,210,170,0.5);border:1px solid rgba(200,180,140,0.35);transform:rotate(3deg);pointer-events:none">
+          <div style="position:absolute;inset:3px;background:repeating-linear-gradient(90deg,transparent,transparent 3px,rgba(255,255,255,0.3) 3px,rgba(255,255,255,0.3) 4px)"></div>
+        </div>
+        <img src="images/hug.JPG" alt="Разговорные клубы" style="width:100%;height:240px;object-fit:cover;display:block">
+        <div style="padding:22px 24px 26px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;opacity:0.8">Клубы</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--dark);line-height:1.25">Разговорные клубы</h3>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div style="position:relative;background:var(--warm);border:1px solid var(--light-border);overflow:hidden" class="reveal reveal-delay-3">
+        <svg style="position:absolute;top:-14px;left:20px;z-index:3;width:20px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.15));transform:rotate(6deg);pointer-events:none" viewBox="0 0 22 58" fill="none">
+          <path d="M11 4C7.134 4 4 7.134 4 11v30c0 5.523 4.477 10 10 10s10-4.477 10-10V11c0-3.866-3.134-7-7-7" stroke="#ba382e" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+          <path d="M11 9v30c0 2.761 2.239 5 5 5s5-2.239 5-5V11" stroke="#ba382e" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+          <path d="M11 4C7.134 4 4 7.134 4 11v30" stroke="rgba(255,200,200,0.4)" stroke-width="0.7" stroke-linecap="round"/>
+        </svg>
+        <img src="images/halloween.jpg" alt="Тематические праздники" style="width:100%;height:240px;object-fit:cover;display:block">
+        <div style="padding:22px 24px 26px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;opacity:0.8">События</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--dark);line-height:1.25">Тематические праздники</h3>
+        </div>
+      </div>
+
+      <!-- 4 -->
+      <div style="position:relative;background:var(--warm);border:1px solid var(--light-border);overflow:hidden" class="reveal reveal-delay-1">
+        <img src="images/chinese.jpg" alt="Китайский язык" style="width:100%;height:240px;object-fit:cover;display:block">
+        <div style="padding:22px 24px 26px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;opacity:0.8">Языки</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--dark);line-height:1.25">Китайский язык</h3>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div style="position:relative;background:var(--warm);border:1px solid var(--light-border);overflow:hidden" class="reveal reveal-delay-2">
+        <svg style="position:absolute;top:-14px;left:20px;z-index:3;width:20px;filter:drop-shadow(0 2px 3px rgba(0,0,0,0.15));transform:rotate(-5deg);pointer-events:none" viewBox="0 0 22 58" fill="none">
+          <path d="M11 4C7.134 4 4 7.134 4 11v30c0 5.523 4.477 10 10 10s10-4.477 10-10V11c0-3.866-3.134-7-7-7" stroke="#8a7a6a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M11 9v30c0 2.761 2.239 5 5 5s5-2.239 5-5V11" stroke="#8a7a6a" stroke-width="2" stroke-linecap="round"/>
+          <path d="M11 4C7.134 4 4 7.134 4 11v30" stroke="rgba(255,255,255,0.35)" stroke-width="0.7" stroke-linecap="round"/>
+        </svg>
+        <img src="images/masteclass.jpg" alt="Творческие мастер-классы" style="width:100%;height:240px;object-fit:cover;display:block">
+        <div style="padding:22px 24px 26px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;opacity:0.8">Творчество</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--dark);line-height:1.25">Творческие мастер-классы</h3>
+        </div>
+      </div>
+
+      <!-- 6 -->
+      <div style="position:relative;background:var(--warm);border:1px solid var(--light-border);overflow:hidden" class="reveal reveal-delay-3">
+        <img src="images/practice.jpg" alt="Подготовка к Cambridge" style="width:100%;height:240px;object-fit:cover;display:block">
+        <div style="padding:22px 24px 26px">
+          <span style="font-size:10px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;opacity:0.8">Экзамены</span>
+          <h3 style="font-family:'Playfair Display',serif;font-size:19px;font-weight:600;color:var(--dark);line-height:1.25">Подготовка к международным экзаменам Cambridge</h3>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="section section--alt">
+  <div class="container">
+    <span class="sec-label reveal">Как проходит обучение</span>
+    <h2 class="sec-title reveal">Четыре шага<br>к результату</h2>
+
+    <div class="process-steps reveal">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Определяем уровень</h3>
+        <p class="step-desc">Бесплатное тестирование для понимания текущих знаний ребёнка</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Подбираем группу</h3>
+        <p class="step-desc">Формируем комфортную компанию по возрасту и уровню</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Регулярная практика</h3>
+        <p class="step-desc">Живое общение, игры и разговорные упражнения на каждом занятии</p>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Отслеживаем прогресс</h3>
+        <p class="step-desc">Родители видят результаты через регулярные отчёты и мини-презентации</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TEACHERS ===== -->
+<section class="section section--cream" id="teachers">
+  <div class="container">
+    <span class="sec-label reveal">Преподаватели</span>
+    <h2 class="sec-title reveal">Наша <span class="hand-underline">команда</span></h2>
+    <p class="sec-lead reveal">Каждый из нас — специалист с профильным образованием и любовью к своему делу.</p>
+
+    <!-- Doodle star near title -->
+    <svg style="position:absolute;top:12px;right:40px;width:32px;opacity:0.18;pointer-events:none" viewBox="0 0 32 32">
+      <path d="M16 2 L18.5 11H28L20.5 16.5L23.5 26L16 20.5L8.5 26L11.5 16.5L4 11H13.5Z" fill="#ba382e"/>
+    </svg>
+
+    <div class="teachers-grid">
+
+      <!-- Таисия -->
+      <div class="teacher-card reveal reveal-delay-1" style="position:relative">
+        <div class="teacher-photo-wrap">
+          <img class="teacher-photo" src="images/taya.jpg" alt="Таисия Ильгова" style="width:160px;height:200px;object-fit:cover;display:block;position:relative;z-index:1">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Таисия Ильгова</h3>
+          <p class="teacher-role">Руководитель студии · Преподаватель</p>
+          <p class="teacher-desc">Создала Red Avenue, чтобы дети влюблялись в английский язык — через живое общение, игру и настоящий интерес.</p>
+          <p class="teacher-edu"><span>Образование:</span> БФУ им. Канта, педагогическое (английский / испанский)</p>
+        </div>
+      </div>
+
+      <!-- Анна -->
+      <div class="teacher-card reveal reveal-delay-2">
+        <div class="teacher-photo-wrap">
+          <img class="teacher-photo" src="images/individual.jpg" alt="Анна" style="width:160px;height:200px;object-fit:cover;display:block;position:relative;z-index:1">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Анна</h3>
+          <p class="teacher-role">Преподаватель</p>
+          <p class="teacher-desc">Онлайн-занятия 1 на 1. Мягкий подход, чёткая структура, внимание к каждому ученику.</p>
+          <p class="teacher-edu"><span>Образование:</span> БФУ им. Канта, лингвистика (английский / французский)</p>
+        </div>
+      </div>
+
+      <!-- Виктория -->
+      <div class="teacher-card reveal reveal-delay-1">
+        <div class="teacher-photo-wrap">
+          <img class="teacher-photo" src="images/victoria.jpg" alt="Виктория" style="width:160px;height:200px;object-fit:cover;display:block;position:relative;z-index:1">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Виктория</h3>
+          <p class="teacher-role">Преподаватель</p>
+          <p class="teacher-desc">Групповые, персональные и онлайн-форматы. Специалист по межкультурной коммуникации.</p>
+          <p class="teacher-edu"><span>Образование:</span> ПсковГУ + магистратура БФУ им. Канта «Экспериментальная лингвистика и ИИ»</p>
+        </div>
+      </div>
+
+      <!-- Юйцзинь -->
+      <div class="teacher-card reveal reveal-delay-2">
+        <div class="teacher-photo-wrap">
+          <img class="teacher-photo" src="images/ujik.jpg" alt="Юйцзинь Чжу" style="width:160px;height:200px;object-fit:cover;display:block;position:relative;z-index:1">
+        </div>
+        <div class="teacher-info">
+          <h3 class="teacher-name">Юйцзинь Чжу</h3>
+          <p class="teacher-role">Преподаватель китайского языка</p>
+          <p class="teacher-desc">Носитель языка. Групповые, персональные и онлайн-форматы. Аспирант БФУ им. Канта.</p>
+          <p class="teacher-edu"><span>Занятия:</span> Групповые · Персональные · Онлайн</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== METHODOLOGY ===== -->
+<section class="section section--alt">
+  <div class="container">
+    <div class="methodology-inner">
+      <div>
+        <span class="sec-label reveal">Программа</span>
+        <h2 class="sec-title reveal">Международные<br>программы ведущих<br><span class="hand-underline">издательств</span></h2>
+        <p class="sec-lead reveal">Мы работаем по международным образовательным программам ведущих издательств, адаптируя их под возраст и особенности детей.</p>
+        <div class="publishers reveal">
+          <span class="publisher-tag">Cambridge University Press</span>
+          <span class="publisher-tag">National Geographic</span>
+          <span class="publisher-tag">Oxford University Press</span>
+        </div>
+      </div>
+      <div class="methodology-photo-wrap reveal">
+        <img class="methodology-photo" src="images/books.jpg" alt="Учебники" style="width:100%;height:420px;object-fit:cover;display:block">
+        <div class="methodology-sticker">
+          <b>✦</b>
+          <span>Top<br>Publishers</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REVIEWS ===== -->
+<section class="section reviews-section" id="reviews">
+  <div class="container">
+    <span class="sec-label reveal">Отзывы</span>
+    <h2 class="sec-title reveal">Отзывы наших учеников</h2>
+
+    <div class="reviews-grid">
+      <div class="review-card reveal reveal-delay-1">
+        <p class="review-text">Занимаемся с Таисией ещё с 5 лет дочери, сейчас нам 10 . Все нравится и концепция, и подача материала. Всегда идет отсылка к современным трендам , связанным с выходом нового сезона сериала или тематические вечеринки,есть школьный летний лагерь, где детям преподавали не только английский, но китайский, водили в кино и на завтраки в кофейни. Что ещё нужно современному ребенку. Ставим твердую «5» ,спасибо за легкое и ненапряжное изучение английского языка.
+</p>
+        <div class="star-divider">
+          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g1)"/><defs><radialGradient id="g1" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+          <svg width="10" height="10" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g2)"/><defs><radialGradient id="g2" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g3)"/><defs><radialGradient id="g3" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+        </div>
+        <p class="review-author">Мария О.</p>
+        <p class="review-role">Мама ученицы, 9 лет</p>
+      </div>
+      <div class="review-card reveal reveal-delay-2">
+        <p class="review-text">Мы очень довольны результатом. Раньше занимались индивидуально, сейчас продолжаем обучение в мини-группах — и это, на наш взгляд, современный и эффективный подход к образованию.
+
+У ребёнка были сложности с расписанием, из-за чего нам даже пришлось на один год перевести его в другую школу. Но всё это время ребёнок просил вернуться к Тае.
+
+В итоге мы вернулись — и это было правильное решение. Рекомендуем от всей души.</p>
+        <div class="star-divider">
+          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g4)"/><defs><radialGradient id="g4" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+          <svg width="10" height="10" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g5)"/><defs><radialGradient id="g5" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g6)"/><defs><radialGradient id="g6" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+        </div>
+        <p class="review-author">Вячеслав Ч.</p>
+        <p class="review-role">Отец ученицы, 9 лет</p>
+      </div>
+      <div class="review-card reveal reveal-delay-3">
+        <p class="review-text">От всей души рекомендую школу иностранных языков! Педагог Таисия горит всей душой к своей работе, и делает занятия не просто рутиной, а создает интерес у детей, учит с такой теплотой и искренностью, что дети обожают занятия. Прекрасная атмосфера и профессиональная команда педагогов делают эту школу идеальным выбором.</p>
+        <div class="star-divider">
+          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g7)"/><defs><radialGradient id="g7" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+          <svg width="10" height="10" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g8)"/><defs><radialGradient id="g8" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+          <svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#g9)"/><defs><radialGradient id="g9" cx="50%" cy="35%" r="65%"><stop offset="0%" stop-color="#f5e070"/><stop offset="55%" stop-color="#d4af37"/><stop offset="100%" stop-color="#a07820"/></radialGradient></defs></svg>
+        </div>
+        <p class="review-author">Н. Донских.</p>
+        <p class="review-role">Мама ученика, 8 лет</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ЛЕТНЯЯ ПРОГРАММА ===== -->
+<section class="section section--alt">
+  <div class="container">
+    <span class="sec-label reveal">Сезонное</span>
+    <h2 class="sec-title reveal">Летняя программа</h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:52px" class="reveal">
+      <div style="overflow:hidden;border-radius:2px">
+        <img src="images/camp.JPG" alt="Летняя программа 1" style="width:100%;height:420px;object-fit:cover;display:block">
+      </div>
+      <div style="overflow:hidden;border-radius:2px">
+        <img src="images/camp2.jpg" alt="Летняя программа 2" style="width:100%;height:420px;object-fit:cover;display:block">
+      </div>
+    </div>
+
+    <div style="margin-top:48px;display:grid;grid-template-columns:1fr 1fr;gap:0" class="reveal">
+      <div style="padding:0 40px 0 0;border-right:1px solid var(--light-border)">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:16px">
+          <li style="display:flex;align-items:baseline;gap:14px">
+            <svg width="13" height="13" viewBox="0 0 14 14" style="flex-shrink:0;margin-top:2px;filter:drop-shadow(0 0 3px rgba(212,175,55,0.5))"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#sum1)"/><defs><radialGradient id="sum1" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+            <span style="font-size:15px;color:var(--dark)">Утренняя зарядка на ковриках</span>
+          </li>
+          <li style="display:flex;align-items:baseline;gap:14px">
+            <svg width="13" height="13" viewBox="0 0 14 14" style="flex-shrink:0;margin-top:2px;filter:drop-shadow(0 0 3px rgba(212,175,55,0.5))"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#sum2)"/><defs><radialGradient id="sum2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+            <span style="font-size:15px;color:var(--dark)">Завтраки от «Булочек ранней пташки»</span>
+          </li>
+          <li style="display:flex;align-items:baseline;gap:14px">
+            <svg width="13" height="13" viewBox="0 0 14 14" style="flex-shrink:0;margin-top:2px;filter:drop-shadow(0 0 3px rgba(212,175,55,0.5))"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#sum3)"/><defs><radialGradient id="sum3" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+            <span style="font-size:15px;color:var(--dark)">Английский с носителем языка</span>
+          </li>
+        </ul>
+      </div>
+      <div style="padding:0 0 0 40px">
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:16px">
+          <li style="display:flex;align-items:baseline;gap:14px">
+            <svg width="13" height="13" viewBox="0 0 14 14" style="flex-shrink:0;margin-top:2px;filter:drop-shadow(0 0 3px rgba(212,175,55,0.5))"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#sum4)"/><defs><radialGradient id="sum4" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+            <span style="font-size:15px;color:var(--dark)">Творческие мастер-классы</span>
+          </li>
+          <li style="display:flex;align-items:baseline;gap:14px">
+            <svg width="13" height="13" viewBox="0 0 14 14" style="flex-shrink:0;margin-top:2px;filter:drop-shadow(0 0 3px rgba(212,175,55,0.5))"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#sum5)"/><defs><radialGradient id="sum5" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+            <span style="font-size:15px;color:var(--dark)">Конкурс талантов</span>
+          </li>
+          <li style="display:flex;align-items:baseline;gap:14px">
+            <svg width="13" height="13" viewBox="0 0 14 14" style="flex-shrink:0;margin-top:2px;filter:drop-shadow(0 0 3px rgba(212,175,55,0.5))"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#sum6)"/><defs><radialGradient id="sum6" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+            <span style="font-size:15px;color:var(--dark)">Уроки китайского, французского, испанского и других языков</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICES ===== -->
+<section class="section section--alt" id="prices">
+  <div class="container">
+    <span class="sec-label reveal">Абонементы</span>
+    <h2 class="sec-title reveal">Форматы занятий</h2>
+
+    <div class="prices-grid">
+
+      <!-- Reusable star snippet: ✦ big ✦ small ✦ big in gold gradient -->
+      <div class="price-card reveal reveal-delay-1">
+        <h3 class="price-card-name">Групповые занятия</h3>
+        <p class="price-card-desc">2–6 детей в группе. Развитие речи, социализация и уверенность в общении.</p>
+        <div class="price-star-divider">
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps1)"/><defs><radialGradient id="ps1" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="9" height="9" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps2)"/><defs><radialGradient id="ps2" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps3)"/><defs><radialGradient id="ps3" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+        </div>
+        <div class="price-card-price">от 850 ₽<span>/ урок</span></div>
+      </div>
+      <div class="price-card reveal reveal-delay-2">
+        <h3 class="price-card-name">Индивидуальные занятия</h3>
+        <p class="price-card-desc">1 на 1 с преподавателем. Персональный темп и программа под ребёнка.</p>
+        <div class="price-star-divider">
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps4)"/><defs><radialGradient id="ps4" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="9" height="9" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps5)"/><defs><radialGradient id="ps5" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps6)"/><defs><radialGradient id="ps6" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+        </div>
+        <div class="price-card-price">от 1500 ₽<span>/ урок</span></div>
+      </div>
+      <div class="price-card reveal reveal-delay-3">
+        <h3 class="price-card-name">Онлайн-занятия</h3>
+        <p class="price-card-desc">Занятия из любой точки мира. Удобно для семей с плотным расписанием.</p>
+        <div class="price-star-divider">
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps7)"/><defs><radialGradient id="ps7" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="9" height="9" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps8)"/><defs><radialGradient id="ps8" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps9)"/><defs><radialGradient id="ps9" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+        </div>
+        <div class="price-card-price">от 1500 ₽<span>/ урок</span></div>
+      </div>
+      <div class="price-card reveal reveal-delay-1">
+        <h3 class="price-card-name">Разговорные клубы с носителем</h3>
+        <p class="price-card-desc">Практика живой речи с носителями языка в непринуждённой атмосфере.</p>
+        <div class="price-star-divider">
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps16)"/><defs><radialGradient id="ps16" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="9" height="9" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps17)"/><defs><radialGradient id="ps17" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps18)"/><defs><radialGradient id="ps18" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+        </div>
+        <div class="price-card-price">от 1000 ₽<span>/ занятие</span></div>
+      </div>
+      <div class="price-card reveal reveal-delay-2">
+        <h3 class="price-card-name">Китайский с носителем</h3>
+        <p class="price-card-desc">Изучение китайского языка с преподавателем-носителем. Групповой и индивидуальный форматы.</p>
+        <div class="price-star-divider">
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps10)"/><defs><radialGradient id="ps10" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="9" height="9" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps11)"/><defs><radialGradient id="ps11" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps12)"/><defs><radialGradient id="ps12" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+        </div>
+        <div class="price-card-price">от 1200 ₽<span>/ урок</span></div>
+      </div>
+      <div class="price-card reveal reveal-delay-3">
+        <h3 class="price-card-name">Пробный урок</h3>
+        <p class="price-card-desc">Знакомство с преподавателем, тестирование уровня и подбор группы. Бесплатно.</p>
+        <div class="price-star-divider">
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps13)"/><defs><radialGradient id="ps13" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="9" height="9" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps14)"/><defs><radialGradient id="ps14" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+          <svg width="13" height="13" viewBox="0 0 14 14"><path d="M7 1L8.3 5.1H12.6L9.2 7.6L10.4 11.8L7 9.3L3.6 11.8L4.8 7.6L1.4 5.1H5.7Z" fill="url(#ps15)"/><defs><radialGradient id="ps15" cx="50%" cy="30%" r="70%"><stop offset="0%" stop-color="#f8ea6a"/><stop offset="50%" stop-color="#d4af37"/><stop offset="100%" stop-color="#8a6010"/></radialGradient></defs></svg>
+        </div>
+        <div class="price-card-price" style="color:var(--dark)">Бесплатно</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTS ===== -->
+<section class="section section--cream" id="contacts">
+  <div class="container">
+    <span class="sec-label reveal">Контакты</span>
+    <h2 class="sec-title reveal">Мы в <span class="hand-underline">Калининграде</span></h2>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:52px;align-items:start">
+
+      <!-- Левая колонка -->
+      <div class="reveal">
+        <div style="margin-bottom:28px">
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Адрес</p>
+          <p style="font-size:16px;color:var(--dark)">Красная ул., 63А, Калининград</p>
+        </div>
+
+        <div style="margin-bottom:28px">
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Телефон</p>
+          <p style="font-size:16px;color:var(--dark)">Таисия +7 921 006 6760</p>
+        </div>
+
+        <div style="margin-bottom:36px">
+          <p style="font-size:11px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Instagram</p>
+          <a href="https://www.instagram.com/red_avenue.school" target="_blank"
+             style="font-size:16px;color:var(--red);text-decoration:none">
+            @red_avenue.school
+          </a>
+        </div>
+
+        <a href="https://t.me/taisie_taya" target="_blank" class="btn-primary" style="display:inline-block">
+          Написать в Telegram
+        </a>
+      </div>
+
+      <!-- Правая колонка (карта) -->
+      <div style="position:relative;width:100%;padding-top:56%;overflow:hidden;border-radius:4px;" class="reveal reveal-delay-1">
+        <iframe
+          src="https://yandex.com/map-widget/v1/org/red_avenue/87008319622/?ll=20.474042%2C54.730032&z=16"
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+    </div> <!-- /grid -->
+  </div>   <!-- /container -->
+</section>
+
+
+<!-- ===== МЫ ВАС ЖДЁМ ===== -->
+<section class="section section--alt" style="text-align:center">
+  <div class="container" style="display:flex;flex-direction:column;align-items:center">
+
+    <!-- Фото -->
+    <div style="position:relative;display:inline-block;margin-bottom:36px" class="reveal">
+      <div style="position:absolute;top:14px;left:14px;right:-14px;bottom:-14px;border:1.5px solid rgba(186,56,46,0.2);pointer-events:none"></div>
+
+      <img src="images/max.jpg" alt="Мы вас ждём"
+           style="width:480px;max-width:100%;height:560px;object-fit:cover;display:block;position:relative;z-index:1">
+
+      <!-- Скрепка -->
+      <svg style="position:absolute;top:-15px;left:28px;z-index:3;width:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.18));transform:rotate(-12deg);pointer-events:none"
+           viewBox="0 0 22 58" fill="none">
+        <path d="M11 4C7.134 4 4 7.134 4 11v30c0 5.523 4.477 10 10 10s10-4.477 10-10V11c0-3.866-3.134-7-7-7"
+              stroke="#8a7a6a" stroke-width="2" stroke-linecap="round"/>
+        <path d="M11 9v30c0 2.761 2.239 5 5 5s5-2.239 5-5V11"
+              stroke="#8a7a6a" stroke-width="2" stroke-linecap="round"/>
+        <path d="M11 4C7.134 4 4 7.134 4 11v30"
+              stroke="rgba(255,255,255,0.35)" stroke-width="0.7" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <!-- Подпись -->
+    <p class="reveal" style="font-family:'Mrs Saint Delafield',cursive;font-size:42px;color:var(--dark);opacity:0.75;letter-spacing:0.04em">Мы вас ждём 🤍</p>
+
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="cta-final">
+  <!-- Decorative stars -->
+  <svg style="position:absolute;top:28px;left:36px;opacity:0.12" width="44" height="44" viewBox="0 0 44 44">
+    <path d="M22 2L25.5 15H39L28.5 22.5L32 36L22 29L12 36L15.5 22.5L5 15H18.5Z" fill="white"/>
+  </svg>
+  <svg style="position:absolute;bottom:28px;right:36px;opacity:0.12" width="44" height="44" viewBox="0 0 44 44">
+    <path d="M22 2L25.5 15H39L28.5 22.5L32 36L22 29L12 36L15.5 22.5L5 15H18.5Z" fill="white"/>
+  </svg>
+
+  <h2 class="cta-final-title">Запишитесь на<br>бесплатный пробный урок</h2>
+  <p class="cta-final-sub">Познакомимся, проведём тестирование и подберём группу</p>
+  <a href="https://t.me/taisie_taya" target="_blank" class="btn-white">Записаться через Telegram</a>
+</section>
+
+<!-- ===== FOOTER ===== -->
 <footer>
-  <p>RED AVENUE SCHOOL</p>
-  <p>
-    <a href="public_offer.html">Публичная оферта</a> ·
-    <a href="policy.html">Политика конфиденциальности</a>
-  </p>
-  <p style="margin-top:18px;font-size:13px;opacity:.7;">
-    Автор - Виктория Громова ·
-    <a href="https://instagram.com/dawn.deformee  " target="_blank">@dawn.deformee</a>
-  </p>
+  <div class="footer-inner">
+    <span class="footer-logo">Red Avenue</span>
+    <div class="footer-links">
+      <a href="public_offer.html">Публичная оферта</a>
+      <a href="policy.html">Политика конфиденциальности</a>
+    </div>
+    <span class="footer-credit">Студия английского · Калининград</span>
+  </div>
 </footer>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('section').forEach(section => {
-      observer.observe(section);
-    });
-
-    document.querySelectorAll('.fade-item').forEach(item => {
-      observer.observe(item);
-    });
-
-    document.querySelector('section').classList.add('visible');
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
   });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 
 </body>
 </html>
-
-

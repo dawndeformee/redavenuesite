@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Контакты — RED AVENUE SCHOOL</title>
   
-  <link rel="preconnect" href="https://fonts.googleapis.com  ">
-  <link rel="preconnect" href="https://fonts.gstatic.com  " crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display  :wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400;500&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
   
   <style>
     :root {
@@ -16,7 +16,9 @@
       --bg: #f8f3ed;
       --section-gap: 80px;
     }
+
     * { box-sizing: border-box; }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -24,30 +26,36 @@
       color: var(--soft-black);
       line-height: 1.7;
     }
+
     header {
       padding: 80px 20px;
       text-align: center;
     }
+
     .logo {
       font-family: 'Playfair Display', serif;
       font-size: 48px;
       color: var(--brand);
       letter-spacing: 2px;
     }
+
     .subtitle {
       font-family: 'Mrs Saint Delafield', cursive;
       font-size: 48px;
       margin-top: 6px;
     }
+
     nav {
       margin-top: 30px;
     }
+
     nav a {
       margin: 0 14px;
       text-decoration: none;
       color: var(--soft-black);
       font-size: 14px;
     }
+
     section {
       max-width: 1200px;
       margin: auto;
@@ -56,10 +64,12 @@
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
+
     section.visible {
       opacity: 1;
       transform: translateY(0);
     }
+
     h2 {
       font-family: 'Playfair Display', serif;
       font-size: 42px;
@@ -67,38 +77,23 @@
       text-align: center;
       margin-bottom: 20px;
     }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 40px;
-    }
-    .card {
-      background: white;
-      padding: 28px;
-      border-radius: 28px;
-      transition: transform 0.3s ease;
-    }
-    .card:hover {
-      transform: translateY(-5px);
-    }
-    .card h3 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 600;
-      font-size: 24px;
-      margin-top: 0;
-      margin-bottom: 20px;
-    }
+
     .contact-info {
       line-height: 1.8;
+      text-align: center;
+      margin-bottom: 30px;
     }
+
     .contact-info a {
       color: var(--brand);
       text-decoration: none;
       transition: opacity 0.3s;
     }
+
     .contact-info a:hover {
       opacity: 0.7;
     }
+
     .contact-btn {
       display: inline-block;
       margin-top: 20px;
@@ -111,21 +106,25 @@
       font-weight: 500;
       transition: all 0.3s ease;
     }
+
     .contact-btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(186, 56, 46, 0.3);
     }
+
     .map-container {
-      margin-top: 20px;
+      margin: 0 auto;
+      max-width: 1000px;
       border-radius: 28px;
       overflow: hidden;
     }
+
     .map-container iframe {
       width: 100%;
-      height: 300px;
+      height: 500px; /* для отзывов */
       border: none;
     }
-    
+
     footer {
       padding: var(--section-gap) 20px;
       text-align: center;
@@ -133,7 +132,7 @@
       color: #eee;
       font-size: 14px;
     }
-    
+
     footer a {
       color: #eee;
       text-decoration: none;
@@ -155,29 +154,29 @@
 
 <section>
   <h2>Контакты</h2>
-  <div class="grid">
 
-    <div class="card">
-      <h3>Связаться с нами</h3>
-      <div class="contact-info">
-        <p><strong>📍 Адрес:</strong><br>Красная ул., 63А, Калининград</p>
-        <p><strong>📞 Телефон:</strong><br>Таисия +7 921 006 6760</p>
-        <p><strong>📸 Instagram:</strong><br><a href="https://www.instagram.com/red_avenue.school  " target="_blank">@red_avenue.school</a></p>
-      </div>
-      <a href="https://t.me/taisie_taya  " target="_blank" class="contact-btn">Записаться на пробное занятие</a>
-    </div>
+  <div class="contact-info">
+    <p><strong>📍 Адрес:</strong> Красная ул., 63А, Калининград</p>
+    <p><strong>📞 Телефон:</strong> Таисия +7 921 006 6760</p>
+    <p><strong>📸 Instagram:</strong> 
+      <a href="https://www.instagram.com/red_avenue.school" target="_blank">
+        @red_avenue.school
+      </a>
+    </p>
+    <a href="https://t.me/taisie_taya" target="_blank" class="contact-btn">
+      Записаться на пробное занятие
+    </a>
+  </div>
 
-    <div class="card">
-      <h3>Где мы находимся</h3>
-      <div class="map-container">
-        <div style="position:relative;overflow:hidden;">
-          <a href="https://yandex.ru/maps/org/red_avenue/87008319622/?utm_medium=mapframe&utm_source=maps  " style="color:#eee;font-size:12px;position:absolute;top:0px;">Red Avenue</a>
-          <a href="https://yandex.ru/maps/22/kaliningrad/category/foreign_language_courses/184106160/?utm_medium=mapframe&utm_source=maps  " style="color:#eee;font-size:12px;position:absolute;top:14px;">Курсы иностранных языков в Калининграде</a>
-          <iframe src="https://yandex.ru/map-widget/v1/?ll=20.472982%2C54.729756&mode=search&oid=87008319622&ol=biz&z=16  " width="560" height="400" frameborder="1" allowfullscreen="true" style="position:relative;"></iframe>
-        </div>
-      </div>
-    </div>
-
+  <h2>Нас рекомендуют</h2>
+  <div class="map-container">
+    <iframe
+      src="https://yandex.ru/map-widget/v1/?oid=87008319622"
+      width="100%"
+      height="500"
+      frameborder="0"
+      allowfullscreen>
+    </iframe>
   </div>
 </section>
 
@@ -189,7 +188,9 @@
   </p>
   <p style="margin-top:18px;font-size:13px;opacity:.7;">
     Автор — Виктория Громова ·
-    <a href="https://instagram.com/dawn.deformee  " target="_blank">@dawn.deformee</a>
+    <a href="https://instagram.com/dawn.deformee" target="_blank">
+      @dawn.deformee
+    </a>
   </p>
 </footer>
 
